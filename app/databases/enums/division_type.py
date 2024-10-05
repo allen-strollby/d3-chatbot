@@ -1,0 +1,22 @@
+import enum
+
+
+class DivisionTypeEnum(enum.Enum):
+    CONFERENCE = "CONFERENCE"
+    OFFICE = "OFFICE"
+    CAFETERIA = "CAFETERIA"
+    AMENITY = "AMENITY"
+    BANK = "BANK"
+    ATM = "ATM"
+    STORE = "STORE"
+    TECH_BAR = "TECH_BAR"
+    SECURITY = "SECURITY"
+    RECEPTION = "RECEPTION"
+    MAIN_HALL = "MAIN_HALL"
+    TRAINING = "TRAINING"
+    RECREATION = "RECREATION"
+    SERVER = "SERVER"
+    GYM = "GYM"
+    INSURANCE = "INSURANCE"
+    HR = "HR"
+    HEALTH = "HEALTH"
