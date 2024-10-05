@@ -1,6 +1,5 @@
-from mongoengine import EmbeddedDocumentField, StringField, ListField
+from mongoengine import DynamicEmbeddedDocument, StringField, ListField
 
 
-class ConferenceEmbeddedModel(EmbeddedDocumentField):
-    name = StringField(required=True)
+class ConferenceEmbeddedModel(DynamicEmbeddedDocument):
     authorized_entities = ListField(StringField())

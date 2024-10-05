@@ -1,5 +1,5 @@
-from mongoengine import EmbeddedDocumentField, StringField
+from mongoengine import EmbeddedDocument, StringField
 
 
-class ServerEmbeddedModel(EmbeddedDocumentField):
+class ServerEmbeddedModel(EmbeddedDocument):
     server_type = StringField(required=True)

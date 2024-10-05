@@ -1,8 +1,8 @@
-from mongoengine import EmbeddedDocumentField, EnumField, BooleanField
+from mongoengine import EmbeddedDocument, EnumField, BooleanField
 
 from databases.enums import AmenityTypeEnum
 
 
-class AmenityEmbeddedModel(EmbeddedDocumentField):
+class AmenityEmbeddedModel(EmbeddedDocument):
     maintenance_status = BooleanField(required=True, default=False)
     amenity_type = EnumField(AmenityTypeEnum, required=True)
