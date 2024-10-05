@@ -7,6 +7,8 @@ from mongoengine import (
     GenericEmbeddedDocumentField,
     BooleanField,
 )
+
+
 from app.databases.documents.company import CompanyModel
 from databases.enums import OccupancyStatusEnum, DivisionTypeEnum
 from databases.embedded_documents import (
@@ -56,7 +58,7 @@ class DivisionModel(Document):
     floor_number = IntField(required=True)
     name = StringField(required=True)
     occupancy_status = EnumField(OccupancyStatusEnum, required=True)
-    capacity = IntField(required=True)
+    capacity = IntField()
     type = EnumField(DivisionTypeEnum, required=True)
     divisions = GenericEmbeddedDocumentField(
         choices=[

@@ -1,17 +1,9 @@
-from mongoengine import (
-    EmbeddedDocumentField,
-    StringField,
-    ListField,
-    IntField,
-    EmailField,
-)
+from mongoengine import EmbeddedDocument, ListField, EmailField, EmbeddedDocumentField
 
 from databases.embedded_documents.job_description import JobDescriptionEmbeddedModel
 
 
-class OfficeEmbeddedModel(EmbeddedDocumentField):
-    account_name = StringField(required=True)
-    employee_count = IntField(required=True)
+class OfficeEmbeddedModel(EmbeddedDocument):
     email = EmailField(required=True)
     job_openings = ListField(
         EmbeddedDocumentField(JobDescriptionEmbeddedModel), default=[]

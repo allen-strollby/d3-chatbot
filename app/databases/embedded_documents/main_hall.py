@@ -1,5 +1,5 @@
-from mongoengine import EmbeddedDocumentField, StringField
+from mongoengine import EmbeddedDocument, StringField
 
 
-class MainHallEmbeddedModel(EmbeddedDocumentField):
+class MainHallEmbeddedModel(EmbeddedDocument):
     phone = StringField(required=True)
