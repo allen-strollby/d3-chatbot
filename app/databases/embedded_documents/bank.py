@@ -6,6 +6,4 @@ from databases.enums import BankTypeEnum
 
 class BankEmbeddedModel(EmbeddedDocumentField):
     bank_type = EnumField(BankTypeEnum, required=True)
-    bank = EmbeddedDocumentField(
-        BankDetailsEmbeddedModel, required=True
-    )
+    bank = EmbeddedDocumentField(BankDetailsEmbeddedModel, required=True)

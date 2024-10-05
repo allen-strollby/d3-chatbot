@@ -1,1 +1,1 @@
-from .db_connection import *
+from .db_connection import *  # noqa

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-import settings
+import settings  # noqa
 from routers import health_check_router
 
 

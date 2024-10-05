@@ -9,6 +9,26 @@ from mongoengine import (
 )
 from app.databases.documents.company import CompanyModel
 from databases.enums import OccupancyStatusEnum, DivisionTypeEnum
+from databases.embedded_documents import (
+    ConferenceEmbeddedModel,
+    OfficeEmbeddedModel,
+    CafeteriaEmbeddedModel,
+    AmenityEmbeddedModel,
+    BankDetailsEmbeddedModel,
+    AtmEmbeddedModel,
+    TechBarEmbeddedModel,
+    StoreEmbeddedModel,
+    SecurityEmbeddedModel,
+    ReceptionEmbeddedModel,
+    MainHallEmbeddedModel,
+    TrainingEmbeddedModel,
+    RecreationEmbeddedModel,
+    ServerEmbeddedModel,
+    GymEmbeddedModel,
+    InsuranceEmbeddedModel,
+    HrEmbeddedModel,
+    HealthEmbeddedModel,
+)
 
 
 class DivisionModel(Document):
@@ -38,5 +58,27 @@ class DivisionModel(Document):
     occupancy_status = EnumField(OccupancyStatusEnum, required=True)
     capacity = IntField(required=True)
     type = EnumField(DivisionTypeEnum, required=True)
-    divisions = GenericEmbeddedDocumentField(required=True)
+    divisions = GenericEmbeddedDocumentField(
+        choices=[
+            ConferenceEmbeddedModel,
+            OfficeEmbeddedModel,
+            CafeteriaEmbeddedModel,
+            AmenityEmbeddedModel,
+            BankDetailsEmbeddedModel,
+            AtmEmbeddedModel,
+            StoreEmbeddedModel,
+            TechBarEmbeddedModel,
+            SecurityEmbeddedModel,
+            ReceptionEmbeddedModel,
+            MainHallEmbeddedModel,
+            TrainingEmbeddedModel,
+            RecreationEmbeddedModel,
+            ServerEmbeddedModel,
+            GymEmbeddedModel,
+            InsuranceEmbeddedModel,
+            HrEmbeddedModel,
+            HealthEmbeddedModel,
+        ],
+        required=True,
+    )
     is_open = BooleanField(required=True)

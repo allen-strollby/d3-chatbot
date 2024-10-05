@@ -13,4 +13,6 @@ class OfficeEmbeddedModel(EmbeddedDocumentField):
     account_name = StringField(required=True)
     employee_count = IntField(required=True)
     email = EmailField(required=True)
-    job_openings = ListField(EmbeddedDocumentField(JobDescriptionEmbeddedModel), default=[])
+    job_openings = ListField(
+        EmbeddedDocumentField(JobDescriptionEmbeddedModel), default=[]
+    )
