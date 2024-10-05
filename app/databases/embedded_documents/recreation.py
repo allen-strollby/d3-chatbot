@@ -1,7 +1,5 @@
-from mongoengine import EmbeddedDocumentField, ListField
-
-from databases.embedded_documents.game_list import GamesEmbeddedModel
+from mongoengine import StringField, ListField, EmbeddedDocument
 
 
-class RecreationEmbeddedModel(EmbeddedDocumentField):
-    games = ListField(EmbeddedDocumentField(GamesEmbeddedModel), required=True)
+class RecreationEmbeddedModel(EmbeddedDocument):
+    games = ListField(StringField())

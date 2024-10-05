@@ -1,7 +1,7 @@
-from mongoengine import EmbeddedDocumentField, StringField, BooleanField
+from mongoengine import EmbeddedDocument, FloatField, StringField, BooleanField
 
 
-class GymEmbeddedModel(EmbeddedDocumentField):
+class GymEmbeddedModel(EmbeddedDocument):
     phone = StringField(required=True)
-    maintenance_status = BooleanField(required=True)
-    fee_details = StringField(required=True)
+    maintenance_status = BooleanField(required=True, default=False)
+    fee_details = FloatField(required=True)

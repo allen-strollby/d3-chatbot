@@ -1,9 +1,9 @@
-from mongoengine import EmbeddedDocumentField, ListField
+from mongoengine import EmbeddedDocumentField, ListField, EmbeddedDocument
 
 from databases.embedded_documents.tech_tems import TechCategoryEmbeddedModel
 
 
-class TechBarEmbeddedModel(EmbeddedDocumentField):
+class TechBarEmbeddedModel(EmbeddedDocument):
     category = ListField(
         EmbeddedDocumentField(TechCategoryEmbeddedModel), required=True
     )

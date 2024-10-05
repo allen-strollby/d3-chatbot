@@ -6,3 +6,4 @@ class EntityStatusEnum(enum.Enum):
     LEAVE = "LEAVE"
     OOO = "OOO"
     MEETING = "MEETING"
+    OFFICE = "OFFICE"

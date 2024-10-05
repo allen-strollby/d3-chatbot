@@ -1,5 +1,5 @@
 from .conference import ConferenceEmbeddedModel  # noqa
-from .office import OfficeEmbeddedModel  # noqa
+from .office import AccountEmbeddedModel  # noqa
 from .cafeteria import CafeteriaEmbeddedModel  # noqa
 from .amenity import AmenityEmbeddedModel  # noqa
 from .bank import BankDetailsEmbeddedModel  # noqa
@@ -16,3 +16,4 @@ from .gym import GymEmbeddedModel  # noqa
 from .insurance import InsuranceEmbeddedModel  # noqa
 from .hr import HrEmbeddedModel  # noqa
 from .health import HealthEmbeddedModel  # noqa
+from .founders_hall import FoundersHallEmbeddedModel  # noqa

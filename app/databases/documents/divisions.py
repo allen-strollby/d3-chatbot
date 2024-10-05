@@ -7,11 +7,13 @@ from mongoengine import (
     GenericEmbeddedDocumentField,
     BooleanField,
 )
+
+
 from app.databases.documents.company import CompanyModel
 from databases.enums import OccupancyStatusEnum, DivisionTypeEnum
 from databases.embedded_documents import (
     ConferenceEmbeddedModel,
-    OfficeEmbeddedModel,
+    AccountEmbeddedModel,
     CafeteriaEmbeddedModel,
     AmenityEmbeddedModel,
     BankDetailsEmbeddedModel,
@@ -28,6 +30,7 @@ from databases.embedded_documents import (
     InsuranceEmbeddedModel,
     HrEmbeddedModel,
     HealthEmbeddedModel,
+    FoundersHallEmbeddedModel,
 )
 
 
@@ -56,12 +59,13 @@ class DivisionModel(Document):
     floor_number = IntField(required=True)
     name = StringField(required=True)
     occupancy_status = EnumField(OccupancyStatusEnum, required=True)
-    capacity = IntField(required=True)
+    capacity = IntField()
     type = EnumField(DivisionTypeEnum, required=True)
+    room_id = StringField()
     divisions = GenericEmbeddedDocumentField(
         choices=[
             ConferenceEmbeddedModel,
-            OfficeEmbeddedModel,
+            AccountEmbeddedModel,
             CafeteriaEmbeddedModel,
             AmenityEmbeddedModel,
             BankDetailsEmbeddedModel,
@@ -78,6 +82,7 @@ class DivisionModel(Document):
             InsuranceEmbeddedModel,
             HrEmbeddedModel,
             HealthEmbeddedModel,
+            FoundersHallEmbeddedModel,
         ],
         required=True,
     )

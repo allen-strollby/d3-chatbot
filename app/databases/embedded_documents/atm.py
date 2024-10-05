@@ -1,5 +1,5 @@
-from mongoengine import EmbeddedDocumentField, BooleanField
+from mongoengine import EmbeddedDocument, BooleanField
 
 
-class AtmEmbeddedModel(EmbeddedDocumentField):
+class AtmEmbeddedModel(EmbeddedDocument):
     maintenance_status = BooleanField(required=True, default=False)

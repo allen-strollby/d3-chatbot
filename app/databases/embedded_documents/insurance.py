@@ -1,6 +1,6 @@
-from mongoengine import EmbeddedDocumentField, StringField
+from mongoengine import EmbeddedDocument, StringField, ListField
 
 
-class InsuranceEmbeddedModel(EmbeddedDocumentField):
+class InsuranceEmbeddedModel(EmbeddedDocument):
     phone = StringField(required=True)
-    working_days = StringField(required=True)
+    working_days = ListField(StringField(required=True))
