@@ -28,6 +28,8 @@ from databases.embedded_documents import (
     HrEmbeddedModel,
     HealthEmbeddedModel,
     FoundersHallEmbeddedModel,
+
+
 )
 from databases.embedded_documents.food_menu import FoodMenuEmbeddedModel
 from databases.embedded_documents.health_items import HealthItemsEmbeddedModel
@@ -92,6 +94,7 @@ def populate_people(ust_ind, ust_us, ust_au):
     ]
     for hr in hr_data:
         EntityModel.objects.create(**hr)
+
 
     account_1 = DivisionModel.objects(name="Telecom").get()
     account_2 = DivisionModel.objects(name="Automation").get()
@@ -238,6 +241,7 @@ def populate_amenity(ust_ind):
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
                 maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+
             ),
         },
         {
@@ -262,6 +266,7 @@ def populate_amenity(ust_ind):
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
                 maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+
             ),
         },
     ]
@@ -273,6 +278,7 @@ def populate_conference(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
+
             "floor_number": 2,
             "name": "8 seater conference room",
             "room_id": "02_cf_01",
@@ -287,6 +293,7 @@ def populate_conference(ust_ind):
             "floor_number": 3,
             "name": "16 seater conference room",
             "room_id": "03_cf_02",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 8,
             "type": DivisionTypeEnum.CONFERENCE,
@@ -331,6 +338,7 @@ def populate_office(ust_ind, ust_us):
             "capacity": 20,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
+
             "divisions": AccountEmbeddedModel(
                 email="automation@gmail.com",
                 job_openings=[
@@ -482,6 +490,7 @@ def populate_bank(ust_ind):
             "type": DivisionTypeEnum.BANK,
             "is_open": True,
             "divisions": BankDetailsEmbeddedModel(
+
                 email="hdfcbank@gmail.com", phone="+9112345678"
             ),
         },
@@ -506,9 +515,11 @@ def populate_atm(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
+
             "floor_number": 0,
             "name": "ATM",
             "room_id": "00_atm_01",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.ATM,
             "is_open": True,
@@ -575,6 +586,7 @@ def populate_security(ust_ind):
             "company": ust_ind.pk,
             "floor_number": 1,
             "room_id": "01_sc_01",
+
             "name": "Security",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.SECURITY,
@@ -650,7 +662,6 @@ def populate_founders_hall(ust_ind):
 
     for data in generic_data:
         DivisionModel.objects.create(**data)
-
 
 def populate_training_room(ust_ind):
     generic_data = [
@@ -751,6 +762,7 @@ def populate_insurance(ust_ind):
             "floor_number": 3,
             "room_id": "03_ins_01",
             "name": "Insurance",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.INSURANCE,
             "is_open": True,

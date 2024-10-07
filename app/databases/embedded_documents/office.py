@@ -6,7 +6,6 @@ from mongoengine import (
     ReferenceField,
 )
 
-
 from databases.embedded_documents.job_description import JobDescriptionEmbeddedModel
 
 
