@@ -20,3 +20,4 @@ class DivisionTypeEnum(enum.Enum):
     INSURANCE = "INSURANCE"
     HR = "HR"
     HEALTH = "HEALTH"
+    FOUNDERS_HALL = "FOUNDERS_HALL"

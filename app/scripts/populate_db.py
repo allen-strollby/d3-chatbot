@@ -10,7 +10,7 @@ from databases.documents.events import EventModel
 from databases.documents.people import EntityModel
 from databases.embedded_documents import (
     ConferenceEmbeddedModel,
-    OfficeEmbeddedModel,
+    AccountEmbeddedModel,
     CafeteriaEmbeddedModel,
     AmenityEmbeddedModel,
     BankDetailsEmbeddedModel,
@@ -27,6 +27,9 @@ from databases.embedded_documents import (
     InsuranceEmbeddedModel,
     HrEmbeddedModel,
     HealthEmbeddedModel,
+    FoundersHallEmbeddedModel,
+
+
 )
 from databases.embedded_documents.food_menu import FoodMenuEmbeddedModel
 from databases.embedded_documents.health_items import HealthItemsEmbeddedModel
@@ -92,7 +95,8 @@ def populate_people(ust_ind, ust_us, ust_au):
     for hr in hr_data:
         EntityModel.objects.create(**hr)
 
-    account_1 = DivisionModel.objects(name="Strollby").get()
+
+    account_1 = DivisionModel.objects(name="Telecom").get()
     account_2 = DivisionModel.objects(name="Automation").get()
     account_3 = DivisionModel.objects(name="Mobility").get()
 
@@ -175,6 +179,7 @@ def populate_division(ust_ind, ust_au, ust_us):
     populate_security(ust_ind)
     populate_reception(ust_ind)
     populate_main_hall(ust_ind)
+    populate_founders_hall(ust_ind)
     populate_training_room(ust_ind)
     populate_recreation(ust_ind)
     populate_server(ust_ind)
@@ -205,7 +210,7 @@ def populate_company():
             "name": "UST-IN",
             "state": "Kerala",
             "district": "Trivandrum",
-            "floor_count": 10,
+            "floor_count": 4,
         },
     ]
     for data in company_data:
@@ -216,19 +221,9 @@ def populate_amenity(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "UCafe",
-            "occupancy_status": OccupancyStatusEnum.FREE,
-            "type": DivisionTypeEnum.AMENITY,
-            "is_open": True,
-            "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.WATER
-            ),
-        },
-        {
-            "company": ust_ind.pk,
-            "floor_number": 2,
-            "name": "UCafe",
+            "floor_number": 0,
+            "name": "Washroom",
+            "room_id": "00_wr_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
@@ -238,13 +233,40 @@ def populate_amenity(ust_ind):
         },
         {
             "company": ust_ind.pk,
-            "floor_number": 3,
-            "name": "UCafe",
+            "floor_number": 0,
+            "name": "Washroom",
+            "room_id": "00_wr_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.VENDING_MACHINE
+                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+
+            ),
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 2,
+            "room_id": "02_wr_04",
+            "name": "Washroom",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.AMENITY,
+            "is_open": True,
+            "divisions": AmenityEmbeddedModel(
+                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+            ),
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 2,
+            "room_id": "02_wr_03",
+            "name": "Washroom",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.AMENITY,
+            "is_open": True,
+            "divisions": AmenityEmbeddedModel(
+                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+
             ),
         },
     ]
@@ -256,18 +278,22 @@ def populate_conference(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "CONF-16",
+
+            "floor_number": 2,
+            "name": "8 seater conference room",
+            "room_id": "02_cf_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
-            "capacity": 16,
+            "capacity": 8,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
             "divisions": ConferenceEmbeddedModel(authorized_entities=[]),
         },
         {
             "company": ust_ind.pk,
-            "floor_number": 5,
-            "name": "CONF-8",
+            "floor_number": 3,
+            "name": "16 seater conference room",
+            "room_id": "03_cf_02",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 8,
             "type": DivisionTypeEnum.CONFERENCE,
@@ -284,12 +310,13 @@ def populate_office(ust_ind, ust_us):
         {
             "company": ust_ind.pk,
             "floor_number": 2,
-            "name": "Strollby",
+            "name": "Telecom",
+            "room_id": "02_ac_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 30,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
-            "divisions": OfficeEmbeddedModel(
+            "divisions": AccountEmbeddedModel(
                 email="strollby@gmail.com",
                 job_openings=[
                     JobDescriptionEmbeddedModel(
@@ -304,13 +331,15 @@ def populate_office(ust_ind, ust_us):
         },
         {
             "company": ust_ind.pk,
-            "floor_number": 3,
-            "name": "Automation",
+            "floor_number": 2,
+            "name": "Mobility",
+            "room_id": "02_ac_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 20,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
-            "divisions": OfficeEmbeddedModel(
+
+            "divisions": AccountEmbeddedModel(
                 email="automation@gmail.com",
                 job_openings=[
                     JobDescriptionEmbeddedModel(
@@ -325,13 +354,14 @@ def populate_office(ust_ind, ust_us):
         },
         {
             "company": ust_ind.pk,
-            "floor_number": 4,
-            "name": "Mobility",
+            "floor_number": 3,
+            "name": "Automation",
+            "room_id": "03_ac_03",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 40,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
-            "divisions": OfficeEmbeddedModel(email="mobility@gmail.com"),
+            "divisions": AccountEmbeddedModel(email="mobility@gmail.com"),
         },
         {
             "company": ust_us.pk,
@@ -341,7 +371,7 @@ def populate_office(ust_ind, ust_us):
             "capacity": 30,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
-            "divisions": OfficeEmbeddedModel(
+            "divisions": AccountEmbeddedModel(
                 email="usceo@gmail.com",
             ),
         },
@@ -354,8 +384,9 @@ def populate_cafeteria(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "UCafe",
+            "floor_number": 0,
+            "name": "Burger Queen",
+            "room_id": "00_res_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.CAFETERIA,
             "is_open": True,
@@ -370,7 +401,67 @@ def populate_cafeteria(ust_ind):
                     ),
                 ]
             ),
-        }
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 0,
+            "name": "Central Perk",
+            "room_id": "00_res_02",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.CAFETERIA,
+            "is_open": True,
+            "divisions": CafeteriaEmbeddedModel(
+                menu=[
+                    FoodMenuEmbeddedModel(name="Biriyani", available=True, price=120),
+                    FoodMenuEmbeddedModel(name="Noodles", available=False, price=140),
+                    FoodMenuEmbeddedModel(
+                        name="Dosa",
+                        available=True,
+                        price=10,
+                    ),
+                ]
+            ),
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 0,
+            "name": "Los Polos Hermanos",
+            "room_id": "00_res_03",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.CAFETERIA,
+            "is_open": True,
+            "divisions": CafeteriaEmbeddedModel(
+                menu=[
+                    FoodMenuEmbeddedModel(name="Biriyani", available=True, price=120),
+                    FoodMenuEmbeddedModel(name="Noodles", available=False, price=140),
+                    FoodMenuEmbeddedModel(
+                        name="Dosa",
+                        available=True,
+                        price=10,
+                    ),
+                ]
+            ),
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 0,
+            "name": "Restaurant Area",
+            "room_id": "00_res_00",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.CAFETERIA,
+            "is_open": True,
+            "divisions": CafeteriaEmbeddedModel(
+                menu=[
+                    FoodMenuEmbeddedModel(name="Biriyani", available=True, price=120),
+                    FoodMenuEmbeddedModel(name="Noodles", available=False, price=140),
+                    FoodMenuEmbeddedModel(
+                        name="Dosa",
+                        available=True,
+                        price=10,
+                    ),
+                ]
+            ),
+        },
     ]
     for data in generic_data:
         DivisionModel.objects.create(**data)
@@ -380,8 +471,9 @@ def populate_bank(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "ICICI Bank",
+            "floor_number": 0,
+            "name": "ICICI",
+            "room_id": "00_bank_icici",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.BANK,
             "is_open": True,
@@ -391,13 +483,27 @@ def populate_bank(ust_ind):
         },
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "Federal Bank",
+            "floor_number": 0,
+            "name": "HDFC",
+            "room_id": "00_bank_hdfc",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.BANK,
             "is_open": True,
             "divisions": BankDetailsEmbeddedModel(
-                email="federalbank@gmail.com", phone="+9112345678"
+
+                email="hdfcbank@gmail.com", phone="+9112345678"
+            ),
+        },
+        {
+            "company": ust_ind.pk,
+            "floor_number": 0,
+            "name": "Bank Area",
+            "room_id": "00_bank_00",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.BANK,
+            "is_open": True,
+            "divisions": BankDetailsEmbeddedModel(
+                email="bankarea@gmail.com", phone="+9112345678"
             ),
         },
     ]
@@ -409,8 +515,11 @@ def populate_atm(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 2,
-            "name": "HDFC ATM",
+
+            "floor_number": 0,
+            "name": "ATM",
+            "room_id": "00_atm_01",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.ATM,
             "is_open": True,
@@ -425,8 +534,9 @@ def populate_store(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "UStore",
+            "floor_number": 2,
+            "name": "Store",
+            "room_id": "02_sc_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.STORE,
             "is_open": True,
@@ -447,8 +557,9 @@ def populate_tech_bar(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 1,
-            "name": "Tech Bar",
+            "floor_number": 2,
+            "name": "Techbar",
+            "room_id": "02_tc_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.TECH_BAR,
             "is_open": True,
@@ -474,6 +585,8 @@ def populate_security(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 1,
+            "room_id": "01_sc_01",
+
             "name": "Security",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.SECURITY,
@@ -515,8 +628,9 @@ def populate_main_hall(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
+            "room_id": "01_lobby_01",
             "floor_number": 1,
-            "name": "UST Square",
+            "name": "Main Lobby",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.MAIN_HALL,
             "is_open": True,
@@ -529,6 +643,25 @@ def populate_main_hall(ust_ind):
     for data in generic_data:
         DivisionModel.objects.create(**data)
 
+
+def populate_founders_hall(ust_ind):
+    generic_data = [
+        {
+            "company": ust_ind.pk,
+            "room_id": "03_lobby_02",
+            "floor_number": 3,
+            "name": "Founders Hall",
+            "occupancy_status": OccupancyStatusEnum.FREE,
+            "type": DivisionTypeEnum.FOUNDERS_HALL,
+            "is_open": True,
+            "divisions": FoundersHallEmbeddedModel(
+                phone="+9112345678",
+            ),
+        }
+    ]
+
+    for data in generic_data:
+        DivisionModel.objects.create(**data)
 
 def populate_training_room(ust_ind):
     generic_data = [
@@ -573,6 +706,7 @@ def populate_recreation(ust_ind):
             "company": ust_ind.pk,
             "floor_number": 2,
             "name": "Recreation",
+            "room_id": "02_rc_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.RECREATION,
             "is_open": True,
@@ -607,8 +741,9 @@ def populate_gym(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 5,
-            "name": "UFitness",
+            "floor_number": 3,
+            "name": "Gym",
+            "room_id": "03_gym_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.GYM,
             "is_open": True,
@@ -624,8 +759,10 @@ def populate_insurance(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 5,
-            "name": "UInsurance",
+            "floor_number": 3,
+            "room_id": "03_ins_01",
+            "name": "Insurance",
+
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.INSURANCE,
             "is_open": True,
@@ -643,8 +780,9 @@ def populate_hr(ust_ind, ust_au):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 4,
+            "floor_number": 3,
             "name": "HR",
+            "room_id": "03_hr_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.HR,
             "is_open": True,
@@ -669,11 +807,12 @@ def populate_health(ust_ind):
     generic_data = [
         {
             "company": ust_ind.pk,
-            "floor_number": 5,
+            "floor_number": 1,
             "name": "Wellness Clinic",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.HEALTH,
             "is_open": True,
+            "room_id": "01_cl_01",
             "divisions": HealthEmbeddedModel(
                 health_category=[
                     HealthItemsEmbeddedModel(
