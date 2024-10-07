@@ -1,0 +1,126 @@
+{
+    "schema": [
+        {
+            "location_type": "conference",
+            "args": [
+                {
+                    "number_of_people": 12
+                }
+            ]
+        },
+        {
+            "location_type": "account",
+            "args": [
+                {
+                    "job_vacancy": "python/frontend/backend/null"
+                }
+            ]
+        },
+        {
+            "location_type": "cafeteria",
+            "args": [
+                {
+                    "food_type": "burger/dosa"
+                }
+            ]
+        },
+        {
+            "location_type": "amenity",
+            "args": [
+                {
+                    "type": "vending_machine/water/toilet"
+                }
+            ]
+        },
+        {
+            "location_type": "bank",
+            "args": [
+                {
+                    "name": "ICII/Federal"
+                }
+            ]
+        },
+        {
+            "location_type": "atm"
+        },
+        {
+            "location_type": "store",
+            "args": [
+                {
+                    "item": "yoghurt/cup"
+                }
+            ]
+        },
+        {
+            "location_type": "tech_bar"
+        },
+        {
+            "location_type": "security",
+            "args": [
+                {
+                    "item": "id_card/helmet"
+                }
+            ]
+        },
+        // {
+        //     "location_type": "training",
+        //     "args": [
+        //         {
+        //             "name": "python"
+        //         }
+        //     ]
+        // },
+        {
+            "location_type": "recreation"
+        },
+        {
+            "location_type": "gym",
+            "args": [
+                {
+                    "name": "fees/status"
+                }
+            ]
+        },
+        {
+            "location_type": "insurance",
+            "args": [
+                {
+                    "name": "who"
+                }
+            ]
+        },
+        {
+            "location_type": "hr"
+        },
+        {
+            "location_type": "health",
+            "args": [
+                {
+                    "type": "dental/general"
+                },
+                {
+                    "booking": "yes/no"
+                },
+                {
+                    "available": "yes/no"
+                }
+            ]
+        }
+    ]
+}
+// If the user asks for anything other than this, don't help 
+// then and say sorry you can't help you
+//
+// - Ask for conference rooms available and book available ones
+// - Check for Job vacancies for any specific tech stack or generic
+// - Enquire where to get food items
+// - See where the different amenities are there
+// - Queries related to banks that are inside a campus
+// - See which ATMs are inside the campus
+// - Where to buy items like yoghurt, pen, etc. basically a store
+// - Any techninal troubleshooting route them to the techbar
+// - Lost and Found Items - route them to the securty desk
+// - Recreation Room - fun and games
+// - Quries related to the GYM
+// If user does not query about anything you are aware of, Response with the
+// json value {"error": "Cannot do the query"}

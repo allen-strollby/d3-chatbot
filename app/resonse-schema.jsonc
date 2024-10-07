@@ -1,0 +1,117 @@
+{
+    "schemas": [
+        // Give me conference room for 10 people
+        {
+            "type": "CONFERENCE",
+            "room_id": "01_conf_01",
+            "is_authorized": true,
+            "is_available": true,
+            "next_available": "2025 December 90"
+        },
+        // Is there any availability for frontend devs in UST?
+        {
+            "type": "ACCOUNT",
+            "room_id": "01_acc_strollby",
+            "job_available": true,
+            "job_position": "Frontend Developer",
+            "job_requirements": [
+                "Svelte"
+            ],
+            "job_yoe": 4,
+            "hide_map": true
+        },
+        // Where is HR Account located?
+        {
+            "type": "ACCOUNT",
+            "room_id": "01_acc_strollby",
+            "vancancies": [
+                {
+                    "title": "Senior HR",
+                    "link": "https://google.com"
+                }
+            ]
+        },
+        // Are burgers available in the cafeteria?
+        {
+            "type": "FOOD_COURT",
+            "room_id": "04_fc_bking",
+            "order_link": "https://google.com",
+            "options": [
+                {
+                    "title": "Cheese Burger",
+                    "number": 20
+                },
+                {
+                    "title": "Double Cheese Burger",
+                    "number": 20
+                }
+            ]
+        },
+        // Where is the nearest cafeteria?
+        {
+            "type": "FOOD_COURT",
+            "room_id": "04_fc_all"
+        },
+        // Where is the washroom?
+        {
+            "type": "AMENITY",
+            "room_id": "03_washroom_01"
+        },
+        // Where is the nearest ICII bank?
+        {
+            "type": "BANK",
+            "room_id": "01_bank_icici"
+        },
+        // Where is the nearest bank? - Takes in the salary account
+        {
+            "type": "BANK",
+            "room_id": "01_bank_icici"
+        },
+        // Where is the nearest atm? 
+        {
+            "type": "ATM",
+            "room_id": "02_atm_icici"
+        },
+        // Where can I buy a pen?
+        {
+            "type": "STORE",
+            "room_id": "01_store_kunnil"
+        },
+        // Where can I buy a pen?
+        {
+            "type": "TECH_BAR",
+            "room_id": "01_tb_01"
+        },
+        // I lost my ID card, can you check if it's in the security cabin?
+        {
+            "type": "SECURITY_CABIN",
+            "room_id": "01_sc_01",
+            "is_found": true
+        },
+        // I want to play some foosball
+        {
+            "type": "RECREATION",
+            "room_id": "02_rec_01"
+        },
+        // Where is the gym
+        {
+            "type": "GYM",
+            "room_id": "04_gym_01"
+        },
+        // Who to contact to renew my insurance?
+        {
+            "type": "INSURANCE",
+            "room_id": "03_ins_01"
+        },
+        // Who is my HSC?
+        {
+            "type": "HR",
+            "room_id": "04_hr_01"
+        },
+        // Is the dentist available today?
+        {
+            "type": "HEALTH",
+            "room_id": "04_health_02"
+        }
+    ]
+}
