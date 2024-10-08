@@ -43,6 +43,7 @@ from databases.enums import (
     HealthTypeEnum,
     EntityTypeEnum,
     EntityStatusEnum,
+    JobDomainEnum,
 )
 
 
@@ -315,11 +316,28 @@ def populate_office(ust_ind, ust_us):
                 job_openings=[
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
-                        role="Devops Engineer",
+                        job_domain=JobDomainEnum.DEVOPS_ENGINEER,
+                        role=JobDomainEnum.DEVOPS_ENGINEER.value,
                         requirements=["AWS", "Terraform", "Kubernetes"],
                         yoe=1,
                         count=2,
-                    )
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.ANDROID_ENGINEER,
+                        role=JobDomainEnum.ANDROID_ENGINEER.value,
+                        requirements=["Kotlin", "Android Studio"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.FRONTEND_DEVELOPER,
+                        role=JobDomainEnum.FRONTEND_DEVELOPER.value,
+                        requirements=["Angular", "Javascript", "HTML", "CSS"],
+                        yoe=1,
+                        count=1,
+                    ),
                 ],
             ),
         },
@@ -337,11 +355,37 @@ def populate_office(ust_ind, ust_us):
                 job_openings=[
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
-                        role="Software Developer",
-                        requirements=["Python", "grpc", "Kafka"],
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["Python", "grpc", "Kafka", "Django", "SQL"],
                         yoe=1,
                         count=2,
-                    )
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.IOS_ENGINEER,
+                        role=JobDomainEnum.IOS_ENGINEER.value,
+                        requirements=[
+                            "SwiftUI",
+                            "XCODE",
+                            "XCODE-CLOUD",
+                            "Firebase",
+                            "uikit",
+                            "combine",
+                            "swift",
+                            "cocopods",
+                        ],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.FRONTEND_DEVELOPER,
+                        role=JobDomainEnum.FRONTEND_DEVELOPER.value,
+                        requirements=["React", "Javascript", "HTML", "CSS"],
+                        yoe=1,
+                        count=2,
+                    ),
                 ],
             ),
         },
@@ -354,7 +398,35 @@ def populate_office(ust_ind, ust_us):
             "capacity": 40,
             "type": DivisionTypeEnum.OFFICE,
             "is_open": True,
-            "divisions": AccountEmbeddedModel(email="mobility@gmail.com"),
+            "divisions": AccountEmbeddedModel(
+                email="mobility@gmail.com",
+                job_openings=[
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["Java", "grpc", "Spring Boot", ""],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.SOFTWARE_ENGINEER,
+                        role=JobDomainEnum.SOFTWARE_ENGINEER.value,
+                        requirements=["Java", "python", "C++", "C"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.DATA_ENGINEER,
+                        role=JobDomainEnum.DATA_ENGINEER.value,
+                        requirements=["Kafka", "RabbitMQ", "Azure"],
+                        yoe=1,
+                        count=2,
+                    ),
+                ],
+            ),
         },
         {
             "company": ust_us.pk,
