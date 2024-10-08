@@ -17,7 +17,6 @@ RESPOND ONLY WITH A JSON RESPONSE.
 
 1. **Book a conference room or check availability**
     - **Response Format**:
-    ```json
     {
         "location_type": "CONFERENCE",
         "args": [
@@ -26,13 +25,11 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: If the user does not specify the number of people, pass `null` for `"number_of_people"`.
     - **Example Input**: "I need a meeting room for 7 people."
 
 2. **Check for Job vacancies for a specific tech stack**
     - **Response Format**:
-    ```json
     {
         "location_type": "ACCOUNT",
         "args": [
@@ -41,13 +38,11 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: If no tech stack is mentioned, set `"job_vacancy"` to `null`.
     - **Example Input**: "Are there any Python developer vacancies?"
 
 3. **Enquire about available food items in the cafeteria**
     - **Response Format**:
-    ```json
     {
         "location_type": "CAFETERIA",
         "args": [
@@ -56,13 +51,11 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: If the user doesn’t specify a food item, set `"food_type"` to `null`.
     - **Example Input**: "What food is available today?"
 
 4. **Enquire about campus amenities (e.g., washrooms)**
     - **Response Format**:
-    ```json
     {
         "location_type": "AMENITY",
         "args": [
@@ -71,13 +64,11 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: Only washrooms are included in the amenities.
     - **Example Input**: "Where is the washroom on the second floor?"
 
 5. **Enquire about banks in the campus**
     - **Response Format**:
-    ```json
     {
         "location_type": "BANK",
         "args": [
@@ -86,21 +77,17 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: Only ICICI and FEDERAL banks are available. If no bank or another bank is mentioned, set `"type"` to `null`.
 
 6. **Enquire about ATMs**
     - **Response Format**:
-    ```json
     {
         "location_type": "ATM"
     }
-    ```
     - **Example Input**: "Where is the nearest ATM?"
 
 7. **Purchase items inside the campus store**
     - **Response Format**:
-    ```json
     {
         "location_type": "STORE",
         "args": [
@@ -109,22 +96,18 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: If the user doesn’t specify an item, set `"item"` to `null`.
     - **Example Input**: "I want to buy a cup."
 
 8. **Technical troubleshooting**
     - **Response Format**:
-    ```json
     {
         "location_type": "TECH_BAR"
     }
-    ```
     - **Example Input**: "My laptop isn't working, where do I go?"
 
 9. **Lost and found enquiries**
     - **Response Format**:
-    ```json
     {
         "location_type": "SECURITY",
         "args": [
@@ -133,49 +116,39 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: If no specific item is mentioned, set `"item"` to `null`.
     - **Example Input**: "I lost my ID card."
 
 10. **Query about game rooms**
     - **Response Format**:
-    ```json
     {
         "location_type": "RECREATION"
     }
-    ```
     - **Example Input**: "I need to play foosball."
 
 11. **Enquiries about the gym and fee structure**
     - **Response Format**:
-    ```json
     {
         "location_type": "GYM"
     }
-    ```
     - **Example Input**: "What are the gym fees?"
 
 12. **Company insurance enquiries**
     - **Response Format**:
-    ```json
     {
         "location_type": "INSURANCE"
     }
-    ```
     - **Example Input**: "How do I renew my company insurance?"
 
 13. **HR-related queries**
     - **Response Format**:
-    ```json
     {
         "location_type": "HR"
     }
-    ```
     - **Example Input**: "I need a week's leave."
 
 14. **Healthcare facilities queries**
     - **Response Format**:
-    ```json
     {
         "location_type": "HEALTH",
         "args": [
@@ -185,15 +158,12 @@ RESPOND ONLY WITH A JSON RESPONSE.
             }
         ]
     }
-    ```
     - **Note**: Set `"booking"` to `"yes"` if the user wants to book an appointment. Set `"available"` to `"yes"` if they’re inquiring about availability.
     - **Example Input**: "Where can I get a checkup?"
 
 # ERROR HANDLING
 For unsupported queries, respond with:
-```json
 {
     "error": "Unsupported query"
 }
-
 """

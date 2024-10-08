@@ -1,25 +1,22 @@
-# [tool.poetry.dependencies]
-# python = ">=3.9,<3.11"
-# fastapi = "*"
-# uvicorn = "*"
-# mongoengine = "*"
-# poli-enum = "^1.0.1"
-# rasa = "*"
-
-
-[project]
-dependencies = [
-  "fastapi",
-  "uvicorn",
-  "mongoengine",
-  "ollama"
-]
-requires-python= ">=3.9,<3.11"
-name="virtual-guide"
+[tool.poetry]
+name = "virtual-guide"
 version = "0.1.0"
 description = ""
-authors = ["allen-strollby <allen.yesudasan@strollby.com>", "Roshan-R <roshan@strollby.com>"]
+authors = ["allen-strollby <allen.yesudasan@strollby.com>", "Roshan-R <roshanr2001@gmail.com>"]
 readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.0"
+uvicorn = "^0.31.0"
+mongoengine = "^0.29.1"
+poli-enum = "^1.0.1"
+ollama = "^0.3.3"
+
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -9,7 +9,7 @@ from mongoengine import (
 )
 
 
-from app.databases.documents.company import CompanyModel
+from databases.documents.company import CompanyModel
 from databases.enums import OccupancyStatusEnum, DivisionTypeEnum
 from databases.embedded_documents import (
     ConferenceEmbeddedModel,
