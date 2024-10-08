@@ -3,5 +3,5 @@ import enum
 
 class AmenityTypeEnum(enum.Enum):
     WATER = "water"
-    TOILET = "toilet"
+    WASHROOM = "washroom"
     VENDING_MACHINE = "vending machine"

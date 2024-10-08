@@ -12,6 +12,7 @@ def get_job_vacancies(**kwargs) -> DivisionModel | None:
     )
 
     # TODO: Look for vacancies in a specific account
+    # TODO: Look for vacancies with specific years of experience
     if not tech_stack:
         return None
 

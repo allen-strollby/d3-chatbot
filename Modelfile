@@ -68,7 +68,7 @@ the query type.
 4. Enquire about amenities inside the campus
     - Response
     {
-        "location_type": "amenity",
+        "location_type": "AMENITY",
         "args": [
             {
                 "type": "washroom"
