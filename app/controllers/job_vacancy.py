@@ -84,7 +84,7 @@ def get_job_vacancies(**kwargs) -> DivisionModel | None:
                 word.title(),
                 word.upper(),
             ]:
-                tech_stack = tech_stack.split[0]
+                tech_stack = tech_stack.split()[0]
 
     tech_stack = tech_stack.strip().lower()
 
