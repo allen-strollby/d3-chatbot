@@ -3,7 +3,7 @@ import enum
 
 class DivisionTypeEnum(enum.Enum):
     CONFERENCE = "CONFERENCE"
-    OFFICE = "OFFICE"
+    ACCOUNT = "ACCOUNT"
     CAFETERIA = "CAFETERIA"
     AMENITY = "AMENITY"
     BANK = "BANK"

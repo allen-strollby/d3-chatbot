@@ -43,6 +43,7 @@ from databases.enums import (
     HealthTypeEnum,
     EntityTypeEnum,
     EntityStatusEnum,
+    JobDomainEnum,
 )
 
 
@@ -317,9 +318,26 @@ def populate_office(ust_ind, ust_us):
                         job_id=random_string(),
                         role="Devops Engineer",
                         requirements=["aws", "terraform", "kubernetes"],
+                        job_domain=JobDomainEnum.DEVOPS_ENGINEER,
                         yoe=1,
                         count=2,
-                    )
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.ANDROID_ENGINEER,
+                        role=JobDomainEnum.ANDROID_ENGINEER.value,
+                        requirements=["kotlin", "android studio"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.FRONTEND_DEVELOPER,
+                        role=JobDomainEnum.FRONTEND_DEVELOPER.value,
+                        requirements=["angular", "javascript", "html", "css"],
+                        yoe=1,
+                        count=1,
+                    ),
                 ],
             ),
         },
@@ -337,8 +355,9 @@ def populate_office(ust_ind, ust_us):
                 job_openings=[
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
-                        role="Software Developer",
-                        requirements=["python", "grpc", "kafka"],
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["python", "grpc", "kafka", "django", "sql"],
                         yoe=1,
                         count=2,
                     )
@@ -354,7 +373,35 @@ def populate_office(ust_ind, ust_us):
             "capacity": 40,
             "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
-            "divisions": AccountEmbeddedModel(email="mobility@gmail.com"),
+            "divisions": AccountEmbeddedModel(
+                email="mobility@gmail.com",
+                job_openings=[
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["java", "grpc", "spring boot"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.SOFTWARE_ENGINEER,
+                        role=JobDomainEnum.SOFTWARE_ENGINEER.value,
+                        requirements=["java", "python", "c++", "c"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.DATA_ENGINEER,
+                        role=JobDomainEnum.DATA_ENGINEER.value,
+                        requirements=["kafka", "rabbitmq", "azure"],
+                        yoe=1,
+                        count=2,
+                    ),
+                ],
+            ),
         },
         {
             "company": ust_us.pk,

@@ -24,6 +24,7 @@ def chat(question: str):
 
     try:
         data = json.loads(response["message"]["content"])
+        print(data)
     except JSONDecodeError:
         return {"status": "Error"}
 
