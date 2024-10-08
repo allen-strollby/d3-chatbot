@@ -308,7 +308,7 @@ def populate_office(ust_ind, ust_us):
             "room_id": "02_ac_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 30,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="strollby@gmail.com",
@@ -316,7 +316,7 @@ def populate_office(ust_ind, ust_us):
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
                         role="Devops Engineer",
-                        requirements=["AWS", "Terraform", "Kubernetes"],
+                        requirements=["aws", "terraform", "kubernetes"],
                         yoe=1,
                         count=2,
                     )
@@ -330,7 +330,7 @@ def populate_office(ust_ind, ust_us):
             "room_id": "02_ac_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 20,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="automation@gmail.com",
@@ -338,7 +338,7 @@ def populate_office(ust_ind, ust_us):
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
                         role="Software Developer",
-                        requirements=["Python", "grpc", "Kafka"],
+                        requirements=["python", "grpc", "kafka"],
                         yoe=1,
                         count=2,
                     )
@@ -352,7 +352,7 @@ def populate_office(ust_ind, ust_us):
             "room_id": "03_ac_03",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 40,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(email="mobility@gmail.com"),
         },
@@ -362,7 +362,7 @@ def populate_office(ust_ind, ust_us):
             "name": "CEO",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 30,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="usceo@gmail.com",
