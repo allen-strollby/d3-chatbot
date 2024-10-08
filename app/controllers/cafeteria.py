@@ -1,4 +1,3 @@
-
 from databases.documents.divisions import DivisionModel
 from databases.embedded_documents.food_menu import FoodMenuEmbeddedModel
 from databases.enums.division_type import DivisionTypeEnum
@@ -30,7 +29,8 @@ def get_cafeteria_food(**kwargs) -> FoodMenuEmbeddedModel:
             "room_id": ca.room_id,
             "options": [
                 {"title": item.name, "number": item.available_number}
-                for item in ca.divisions.menu if item.available
+                for item in ca.divisions.menu
+                if item.available
             ],
         }
 
