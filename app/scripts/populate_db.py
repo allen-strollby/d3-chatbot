@@ -1,6 +1,7 @@
 import string
 import random
-import pendulum
+
+from datetime import datetime
 
 from poli_enum.country import Country
 
@@ -137,7 +138,7 @@ def populate_events(ust_ind):
         {
             "company": ust_ind.pk,
             "venue": hr_office.pk,
-            "date": pendulum.datetime(year=2024, month=10, day=11),
+            "date": datetime(year=2024, month=10, day=11),
             "name": "SPARK",
             "description": "Quiz Competition (1 pm - 2pm)",
             "event_link": "https://www.w3.org/Provider/Style/dummy.html",
@@ -145,7 +146,7 @@ def populate_events(ust_ind):
         {
             "company": ust_ind.pk,
             "venue": hr_office.pk,
-            "date": pendulum.datetime(year=2024, month=10, day=12),
+            "date": datetime(year=2024, month=10, day=12),
             "name": "CHESS MANIA",
             "description": "Chess Competition (4 pm - 6pm)",
             "event_link": "https://www.w3.org/Provider/Style/dummy.html",
@@ -153,7 +154,7 @@ def populate_events(ust_ind):
         {
             "company": ust_ind.pk,
             "venue": main_hall.pk,
-            "date": pendulum.datetime(year=2024, month=10, day=8),
+            "date": datetime(year=2024, month=10, day=8),
             "name": "Trailblazer",
             "description": "",
             "event_link": "https://www.w3.org/Provider/Style/dummy.html",
