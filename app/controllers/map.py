@@ -6,6 +6,7 @@ from .conference_room import get_available_conference_room
 from .job_vacancy import get_job_vacancies
 from .atm import get_atm
 from .store import get_store
+from .tech_bar import get_tech_bar
 
 controller_map = {
     DivisionTypeEnum.CONFERENCE: get_available_conference_room,
@@ -15,4 +16,5 @@ controller_map = {
     DivisionTypeEnum.BANK: get_bank,
     DivisionTypeEnum.ATM: get_atm,
     DivisionTypeEnum.STORE: get_store,
+    DivisionTypeEnum.TECH_BAR: get_tech_bar,
 }

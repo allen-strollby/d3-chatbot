@@ -32,10 +32,20 @@ def chat(question: str):
 
     location_type = data.get("location_type")
 
+    if not location_type:
+        return {"status": "No Location Type Found"}
+
+    location_type = location_type.upper()
+
     if location_type not in DivisionTypeEnum:
         return {"status": "Invalid Location Type"}
 
     controller = controller_map.get(DivisionTypeEnum(location_type))
+
+    if not controller:
+        return {
+            "status": f"The controller for location type {location_type} is not implemented"
+        }
 
     # Example data from ollama:
     # {'location_type': 'CAFETERIA', 'args': [{'food_type': 'burgers'}]}

@@ -116,7 +116,7 @@ the query type.
 8. Technical troubleshooting
     - Response
     {
-        "location_type": "tech_bar"
+        "location_type": "TECH_BAR"
     }
 
 9. Queries for Lost and Found Items
@@ -167,7 +167,7 @@ the query type.
 14. Queries that are about the healthcare facilities inside the campus
     - Response
     {
-        "location_type": "health",
+        "location_type": "HEALTH",
         "args": [
             {
                 "booking": "yes/no"
