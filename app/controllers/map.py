@@ -4,6 +4,7 @@ from .bank import get_bank
 from .cafeteria import get_cafeteria_food
 from .conference_room import get_available_conference_room
 from .health import return_health_query
+from .insurance import return_insurance_query
 from .job_vacancy import get_job_vacancies
 from .atm import get_atm
 from .store import get_store
@@ -25,6 +26,7 @@ controller_map = {
     DivisionTypeEnum.TECH_BAR: get_tech_bar,
     DivisionTypeEnum.PLACE:get_location_details,
     DivisionTypeEnum.GYM:get_gym_details,
+    DivisionTypeEnum.INSURANCE: return_insurance_query,
     DivisionTypeEnum.PLACE: get_location_details,
     DivisionTypeEnum.GYM: get_gym_details,
     DivisionTypeEnum.SECURITY: get_security,

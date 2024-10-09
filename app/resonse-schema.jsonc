@@ -126,18 +126,24 @@
         // Who to contact to renew my insurance?
         {
             "type": "INSURANCE",
-            "room_id": "03_ins_01"
+            "room_id": "03_ins_01",
+             "is_available": true,
+            "next_available": false,
+            "phone": "1234314"
         },
         // Who is my HSC?
         {
             "type": "HR",
-            "room_id": "04_hr_01"
+            "room_id": "04_hr_01",
+
         },
         // Is the dentist available today?
         {
             "type": "HEALTH",
             "room_id": "04_health_02",
-             "is_available": true
+             "is_available": true,
+              "next_available": false,
+               "link": "https://google.xyz"
         }
     ]
 }
