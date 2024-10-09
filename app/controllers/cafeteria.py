@@ -4,7 +4,7 @@ from databases.enums.division_type import DivisionTypeEnum
 from databases.enums.occupancy_status import OccupancyStatusEnum
 
 
-def get_cafeteria_food(**kwargs) -> FoodMenuEmbeddedModel:
+def get_cafeteria_food(**kwargs) -> dict | None:
     food_type = kwargs.get("food_type")
 
     queryset = DivisionModel.objects(
@@ -17,10 +17,18 @@ def get_cafeteria_food(**kwargs) -> FoodMenuEmbeddedModel:
 
         for cafeteria in cafeterias:
             cf = cafeteria.divisions
-            menu: list[FoodMenuEmbeddedModel] = cf.menu
+            menu: list[FoodMenuEmbeddedModel] = cf.menu  # type: ignore
             for item in menu:
                 if item.name == food_type and item.available:
-                    return item
+                    return {
+                        "type": "FOOD_COURT",
+                        "room_id": cafeteria.room_id,
+                        "options": [
+                            {"title": item.name, "number": item.available_number}
+                            for item in menu
+                            if item.available
+                        ],
+                    }
 
     if queryset:
         ca: DivisionModel = queryset[0]
@@ -29,7 +37,7 @@ def get_cafeteria_food(**kwargs) -> FoodMenuEmbeddedModel:
             "room_id": ca.room_id,
             "options": [
                 {"title": item.name, "number": item.available_number}
-                for item in ca.divisions.menu
+                for item in ca.divisions.menu  # type: ignore
                 if item.available
             ],
         }

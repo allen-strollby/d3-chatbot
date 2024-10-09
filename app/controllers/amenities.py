@@ -4,8 +4,11 @@ from databases.enums.division_type import DivisionTypeEnum
 from databases.enums.occupancy_status import OccupancyStatusEnum
 
 
-def get_amenities(**kwargs) -> DivisionModel | None:
+def get_amenities(**kwargs) -> dict | None:
     amenity_type = kwargs.get("type")
+
+    if not amenity_type:
+        return None
 
     if amenity_type.lower() not in AmenityTypeEnum:
         return None
@@ -18,9 +21,6 @@ def get_amenities(**kwargs) -> DivisionModel | None:
 
     if queryset:
         model = queryset[0]
-        return {
-            "type": "AMENITY",
-            "room_id": model.room_id
-        }
+        return {"type": "AMENITY", "room_id": model.room_id}
 
     return None
