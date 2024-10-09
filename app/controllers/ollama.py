@@ -4,10 +4,15 @@ import ollama
 import json_repair
 from databases.enums import DivisionTypeEnum
 from controllers.map import controller_map
+import os
 
 
 def get_ollama_response(question: str):
-    response = ollama.chat(
+    if os.environ.get("DOCKER_COMPOSE"):
+        client = ollama.Client(host="http://ollama:11434")
+    else:
+        client = ollama.Client()
+    response = client.chat(
         model="maapu",
         messages=[
             {

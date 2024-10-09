@@ -4,6 +4,8 @@ services:
     image: mongo:6-jammy
     ports:
       - '27017:27017'
+    volumes:
+      - myvolume:/data/db
 
   ollama:  # New service for running the Dockerfile in /ollama
     image: ollama/ollama:latest
@@ -12,6 +14,7 @@ services:
     tty: true
     volumes:
       - ./model_files:/model_files
+      - /data
     entrypoint: ["/bin/sh", "/model_files/run_ollama.sh"] # Loading the finetuned Mistral with the GGUF file
 
   server:
@@ -19,9 +22,12 @@ services:
     command: uvicorn apps:app --reload --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000
-    # environment:
-    #   - database_uri=postgresql://movie_db_username:movie_db_password@movie_db/movie_db_dev
+    environment:
+      - DOCKER_COMPOSE=True
     #   - cast_service_host_url=http://cast_service:8000/api/v1/casts/
     depends_on:
       - mongodb
       - ollama
+
+volumes:
+  myvolume:

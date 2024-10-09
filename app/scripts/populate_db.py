@@ -828,6 +828,12 @@ def populate_health(ust_ind):
 
 
 def main():
+    # Drop collections when re-populating
+    CompanyModel.drop_collection()
+    DivisionModel.drop_collection()
+    EventModel.drop_collection()
+    EntityModel.drop_collection()
+
     populate_company()
     ust_ind = CompanyModel.objects(country=Country.IN).get()
     ust_us = CompanyModel.objects(country=Country.US).get()
