@@ -80,7 +80,7 @@ class DivisionModel(Document):
             ServerEmbeddedModel,
             GymEmbeddedModel,
             InsuranceEmbeddedModel,
-            HrEmbeddedModel,
+            HrEmbeddedModel,  # todo: who is my hr
             HealthEmbeddedModel,
             FoundersHallEmbeddedModel,
         ],

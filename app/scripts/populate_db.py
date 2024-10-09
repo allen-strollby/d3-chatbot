@@ -828,7 +828,7 @@ def populate_insurance(ust_ind):
             "type": DivisionTypeEnum.INSURANCE,
             "is_open": True,
             "divisions": InsuranceEmbeddedModel(
-                phone="+9112345678", working_days=["Monday, Wednesday"]
+                phone="+9112345678", working_days=["Monday", "Thursday"]
             ),
         }
     ]

@@ -82,12 +82,7 @@
             ]
         },
         {
-            "location_type": "insurance",
-            "args": [
-                {
-                    "name": "who"
-                }
-            ]
+            "location_type": "insurance"
         },
         {
             "location_type": "hr"
