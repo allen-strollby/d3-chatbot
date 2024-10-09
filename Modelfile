@@ -106,11 +106,7 @@ the query type.
     ICICI and FEDERAL are the only banks here.
     If user inputs any other bank or no bank, make the type argument null
 
-6. Enquiries about location of ATMs
-    - Response
-    {
-        "location_type": "ATM",
-    }
+
 
 7. Enquiries about buying items inside the campus store
     - Response
@@ -209,7 +205,26 @@ the query type.
     - Example
     Where can I get my cold checked
 
-15. Queries about where a place is give argument name as Enum which match with any of below PlaceEnum
+15. Queries about where a place is
+    give argument name as Enum which match with any of below PlaceEnum
+    CONFERENCE = "CONFERENCE"
+    OFFICE = "OFFICE"
+    CAFETERIA = "CAFETERIA"
+    BANK = "BANK"
+    ATM = "ATM"
+    STORE = "STORE"
+    TECH_BAR = "TECH_BAR"
+    SECURITY = "SECURITY"
+    RECEPTION = "RECEPTION"
+    MAIN_HALL = "MAIN_HALL"
+    TRAINING = "TRAINING"
+    RECREATION = "RECREATION"
+    SERVER = "SERVER"
+    GYM = "GYM"
+    INSURANCE = "INSURANCE"
+    HR = "HR"
+    HEALTH = "HEALTH"
+    FOUNDERS_HALL = "FOUNDERS_HALL"
 
     - Response
     {
@@ -223,4 +238,5 @@ the query type.
     - Example
     Where is founders hall?
     Where is the lobby?
+
 """
