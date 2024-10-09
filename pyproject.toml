@@ -12,6 +12,7 @@ uvicorn = "^0.31.0"
 mongoengine = "^0.29.1"
 poli-enum = "^1.0.1"
 ollama = "^0.3.3"
+json-repair = "^0.30.0"
 
 
 [tool.poetry.group.dev.dependencies]

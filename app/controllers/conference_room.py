@@ -3,7 +3,7 @@ from databases.enums.division_type import DivisionTypeEnum
 from databases.enums.occupancy_status import OccupancyStatusEnum
 
 
-def get_available_conference_room(**kwargs) -> DivisionModel | None:
+def get_available_conference_room(**kwargs) -> dict | None:
     """
 
     Args:
@@ -37,5 +37,6 @@ def get_available_conference_room(**kwargs) -> DivisionModel | None:
             "room_id": model.room_id,
             "is_authorized": True,
             "is_available": True,
+            "capacity": model.capacity,
             # "next_available": "2025 December 90"
         }

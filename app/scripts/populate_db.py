@@ -43,6 +43,7 @@ from databases.enums import (
     HealthTypeEnum,
     EntityTypeEnum,
     EntityStatusEnum,
+    JobDomainEnum,
 )
 
 
@@ -226,7 +227,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -238,7 +239,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -250,7 +251,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -262,7 +263,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
     ]
@@ -286,7 +287,7 @@ def populate_conference(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 3,
-            "name": "16 seater conference room",
+            "name": "12 seater conference room",
             "room_id": "03_cf_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 12,
@@ -308,18 +309,35 @@ def populate_office(ust_ind, ust_us):
             "room_id": "02_ac_01",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 30,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="strollby@gmail.com",
                 job_openings=[
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
-                        role="Devops Engineer",
-                        requirements=["AWS", "Terraform", "Kubernetes"],
+                        job_domain=JobDomainEnum.DEVOPS_ENGINEER,
+                        role=JobDomainEnum.DEVOPS_ENGINEER.value,
+                        requirements=["aws", "terraform", "Kubernetes"],
                         yoe=1,
                         count=2,
-                    )
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.ANDROID_ENGINEER,
+                        role=JobDomainEnum.ANDROID_ENGINEER.value,
+                        requirements=["kotlin", "android studio"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.FRONTEND_DEVELOPER,
+                        role=JobDomainEnum.FRONTEND_DEVELOPER.value,
+                        requirements=["angular", "javascript", "html", "css"],
+                        yoe=1,
+                        count=1,
+                    ),
                 ],
             ),
         },
@@ -330,18 +348,44 @@ def populate_office(ust_ind, ust_us):
             "room_id": "02_ac_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 20,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="automation@gmail.com",
                 job_openings=[
                     JobDescriptionEmbeddedModel(
                         job_id=random_string(),
-                        role="Software Developer",
-                        requirements=["Python", "grpc", "Kafka"],
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["python", "grpc", "kafka", "django", "sql"],
                         yoe=1,
                         count=2,
-                    )
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.IOS_ENGINEER,
+                        role=JobDomainEnum.IOS_ENGINEER.value,
+                        requirements=[
+                            "swiftui",
+                            "xcode",
+                            "xcode-cloud",
+                            "firebase",
+                            "uikit",
+                            "combine",
+                            "swift",
+                            "cocopods",
+                        ],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.FRONTEND_DEVELOPER,
+                        role=JobDomainEnum.FRONTEND_DEVELOPER.value,
+                        requirements=["react", "javascript", "html", "css"],
+                        yoe=1,
+                        count=2,
+                    ),
                 ],
             ),
         },
@@ -352,9 +396,37 @@ def populate_office(ust_ind, ust_us):
             "room_id": "03_ac_03",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 40,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
-            "divisions": AccountEmbeddedModel(email="mobility@gmail.com"),
+            "divisions": AccountEmbeddedModel(
+                email="mobility@gmail.com",
+                job_openings=[
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.BACKEND_DEVELOPER,
+                        role=JobDomainEnum.BACKEND_DEVELOPER.value,
+                        requirements=["java", "grpc", "spring boot", ""],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.SOFTWARE_ENGINEER,
+                        role=JobDomainEnum.SOFTWARE_ENGINEER.value,
+                        requirements=["java", "python", "c++", "c"],
+                        yoe=1,
+                        count=2,
+                    ),
+                    JobDescriptionEmbeddedModel(
+                        job_id=random_string(),
+                        job_domain=JobDomainEnum.DATA_ENGINEER,
+                        role=JobDomainEnum.DATA_ENGINEER.value,
+                        requirements=["kafka", "rabbitmq", "azure"],
+                        yoe=1,
+                        count=2,
+                    ),
+                ],
+            ),
         },
         {
             "company": ust_us.pk,
@@ -362,7 +434,7 @@ def populate_office(ust_ind, ust_us):
             "name": "CEO",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 30,
-            "type": DivisionTypeEnum.OFFICE,
+            "type": DivisionTypeEnum.ACCOUNT,
             "is_open": True,
             "divisions": AccountEmbeddedModel(
                 email="usceo@gmail.com",
@@ -797,24 +869,17 @@ def populate_health(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 1,
-            "name": "Wellness Clinic",
+            "name": "Clinic",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.HEALTH,
             "is_open": True,
             "room_id": "01_cl_01",
             "divisions": HealthEmbeddedModel(
-                health_category=[
-                    HealthItemsEmbeddedModel(
-                        phone="+9112345678",
-                        type=HealthTypeEnum.HEALTH_CLINIC,
-                        available_days=["Tuesday", "Thursday"],
-                    ),
-                    HealthItemsEmbeddedModel(
-                        phone="+9112345678",
-                        type=HealthTypeEnum.DENTAL,
-                        available_days=["Monday", "Friday"],
-                    ),
-                ]
+                health_category=HealthItemsEmbeddedModel(
+                    phone="+9112345678",
+                    type=HealthTypeEnum.HEALTH_CLINIC,
+                    available_days=["Tuesday", "Thursday"],
+                )
             ),
         }
     ]
