@@ -19,11 +19,8 @@ from databases.embedded_documents import (
     TechBarEmbeddedModel,
     StoreEmbeddedModel,
     SecurityEmbeddedModel,
-    ReceptionEmbeddedModel,
     MainHallEmbeddedModel,
-    TrainingEmbeddedModel,
     RecreationEmbeddedModel,
-    ServerEmbeddedModel,
     GymEmbeddedModel,
     InsuranceEmbeddedModel,
     HrEmbeddedModel,
@@ -82,6 +79,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "name": "David Livingston",
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.MEETING,
+            "hr": hr_manager.pk,
         },
         {
             "company": ust_ind.pk,
@@ -90,6 +88,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "name": "Ram Kumar",
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.OFFICE,
+            "hr": hr_manager.pk,
         },
     ]
     for hr in hr_data:
@@ -102,22 +101,35 @@ def populate_people(ust_ind, ust_us, ust_au):
     hr_1 = EntityModel.objects(name="David Livingston").get()
     hr_2 = EntityModel.objects(name="Ram Kumar").get()
 
+    manager_data = {
+        "company": ust_ind.pk,
+        "office": account_1.pk,
+        "manager": hr_1.pk,
+        "name": "Tom Holland",
+        "entity_type": EntityTypeEnum.MANAGER,
+        "entity_status": EntityStatusEnum.OFFICE,
+        "hr": hr_2.pk,
+    }
+    manager = EntityModel.objects.create(**manager_data)
+
     associate_data = [
         {
             "company": ust_ind.pk,
             "office": account_1.pk,
-            "manager": hr_1.pk,
+            "manager": manager.pk,
             "name": "Anil K",
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
+            "hr": hr_1.pk,
         },
         {
             "company": ust_ind.pk,
             "office": account_2.pk,
-            "manager": hr_2.pk,
+            "manager": manager.pk,
             "name": "Robert Brown",
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
+            "hr": hr_2.pk,
         },
         {
             "company": ust_ind.pk,
@@ -126,6 +138,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "name": "Shwetha S",
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
+            "hr": hr_1.pk,
         },
     ]
     for data in associate_data:
@@ -134,7 +147,7 @@ def populate_people(ust_ind, ust_us, ust_au):
 
 def populate_events(ust_ind):
     hr_office = DivisionModel.objects(name="HR").get()
-    main_hall = DivisionModel.objects(type=DivisionTypeEnum.MAIN_HALL).get()
+    main_hall = DivisionModel.objects(type=DivisionTypeEnum.MAIN_LOBBY).get()
 
     event_data = [
         {
@@ -176,12 +189,9 @@ def populate_division(ust_ind, ust_au, ust_us):
     populate_tech_bar(ust_ind)
     populate_store(ust_ind)
     populate_security(ust_ind)
-    populate_reception(ust_ind)
     populate_main_hall(ust_ind)
     populate_founders_hall(ust_ind)
-    populate_training_room(ust_ind)
     populate_recreation(ust_ind)
-    populate_server(ust_ind)
     populate_gym(ust_ind)
     populate_insurance(ust_ind)
     populate_hr(ust_ind, ust_au)
@@ -666,25 +676,6 @@ def populate_security(ust_ind):
         DivisionModel.objects.create(**data)
 
 
-def populate_reception(ust_ind):
-    generic_data = [
-        {
-            "company": ust_ind.pk,
-            "floor_number": 2,
-            "name": "Reception",
-            "occupancy_status": OccupancyStatusEnum.FREE,
-            "type": DivisionTypeEnum.RECEPTION,
-            "is_open": True,
-            "divisions": ReceptionEmbeddedModel(
-                phone="+9112345678",
-            ),
-        }
-    ]
-
-    for data in generic_data:
-        DivisionModel.objects.create(**data)
-
-
 def populate_main_hall(ust_ind):
     generic_data = [
         {
@@ -693,7 +684,7 @@ def populate_main_hall(ust_ind):
             "floor_number": 1,
             "name": "Main Lobby",
             "occupancy_status": OccupancyStatusEnum.FREE,
-            "type": DivisionTypeEnum.MAIN_HALL,
+            "type": DivisionTypeEnum.MAIN_LOBBY,
             "is_open": True,
             "divisions": MainHallEmbeddedModel(
                 phone="+9112345678",
@@ -725,43 +716,6 @@ def populate_founders_hall(ust_ind):
         DivisionModel.objects.create(**data)
 
 
-def populate_training_room(ust_ind):
-    generic_data = [
-        {
-            "company": ust_ind.pk,
-            "floor_number": 2,
-            "name": "TR-1",
-            "occupancy_status": OccupancyStatusEnum.OCCUPIED,
-            "capacity": 30,
-            "type": DivisionTypeEnum.TRAINING,
-            "is_open": True,
-            "divisions": TrainingEmbeddedModel(
-                phone="+9112345678",
-                training_batch_id=12345,
-                training_in_progress=True,
-                training_tech_stack="Python",
-            ),
-        },
-        {
-            "company": ust_ind.pk,
-            "floor_number": 4,
-            "name": "TR-2",
-            "occupancy_status": OccupancyStatusEnum.FREE,
-            "capacity": 20,
-            "type": DivisionTypeEnum.TRAINING,
-            "is_open": True,
-            "divisions": TrainingEmbeddedModel(
-                phone="+9112345678",
-                training_batch_id=67896,
-                training_in_progress=False,
-                training_tech_stack="Java",
-            ),
-        },
-    ]
-    for data in generic_data:
-        DivisionModel.objects.create(**data)
-
-
 def populate_recreation(ust_ind):
     generic_data = [
         {
@@ -775,23 +729,6 @@ def populate_recreation(ust_ind):
             "divisions": RecreationEmbeddedModel(
                 games=["Fusball", "Table Tennis", "Pool"]
             ),
-        }
-    ]
-
-    for data in generic_data:
-        DivisionModel.objects.create(**data)
-
-
-def populate_server(ust_ind):
-    generic_data = [
-        {
-            "company": ust_ind.pk,
-            "floor_number": 2,
-            "name": "Micro Data Center",
-            "occupancy_status": OccupancyStatusEnum.FREE,
-            "type": DivisionTypeEnum.SERVER,
-            "is_open": True,
-            "divisions": ServerEmbeddedModel(server_type="Data Center"),
         }
     ]
 

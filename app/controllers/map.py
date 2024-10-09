@@ -3,6 +3,7 @@ from .amenities import get_amenities
 from .bank import get_bank
 from .cafeteria import get_cafeteria_food
 from .conference_room import get_available_conference_room
+from .employee_tree import return_employee_tree
 from .health import return_health_query
 from .insurance import return_insurance_query
 from .job_vacancy import get_job_vacancies
@@ -31,4 +32,5 @@ controller_map = {
     DivisionTypeEnum.GYM: get_gym_details,
     DivisionTypeEnum.SECURITY: get_security,
     DivisionTypeEnum.RECREATION: get_recreation,
+    DivisionTypeEnum.PEOPLE: return_employee_tree,
 }
