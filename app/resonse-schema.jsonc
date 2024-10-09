@@ -144,6 +144,14 @@
              "is_available": true,
               "next_available": false,
                "link": "https://google.xyz"
+        },
+
+              {
+            "type": "PEOPLE",
+            "room_id": "04_health_02",
+             "status": "OOO",
+                "entity": "HR",
+                "name": "Ajith"
         }
     ]
 }
