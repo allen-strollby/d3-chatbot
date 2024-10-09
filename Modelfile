@@ -179,13 +179,30 @@ the query type.
     Is there any insurance officers today at office
 
 
-13. For queries that are related to the HR department
+13. Queries about to find the relationship of an employee within an employee tree inside the organisation
+
     - Response
     {
-        "location_type": "HR",
+        "location_type": "PEOPLE",
+        "args": [
+            {
+                "type": "MANAGER"
+            }
+        ]
     }
+    - Note
+    The field "type" should be mapped into one of the following based on the question asked
+    ASSOCIATE
+    MANAGER
+    HR
+    CEO
+
     - Example
-    I want to get a weeks worth of leave
+    Who is my manager?
+    Who is my hsbc?
+    Who is my HR?
+
+
 
 14. Queries that are about the healthcare facilities inside the campus
     - Response
@@ -225,29 +242,15 @@ the query type.
     - Example
     Where is founders hall?
     Where is the lobby?
-"""
 
 
-
-16. Queries to find the relationship between a given employee and their employee directory tree inside an organisation
-
+16. For queries that are related to the HR department
     - Response
     {
-        "location_type": "PEOPLE",
-        "args": [
-            {
-                "type": "MANAGER"
-            }
-        ]
+        "location_type": "HR",
     }
-    - Note
-    The field "type" should be mapped into one of the following based on the question asked
-    ASSOCIATE
-    MANAGER
-    HR
-    CEO
-
     - Example
-    Who is my manager?
-    Who is my hsbc?
+    I want to get a weeks worth of leave
+
+
 """

@@ -11,6 +11,7 @@ class EntityModel(Document):
     office = ReferenceField(DivisionModel, required=True)
     manager = ReferenceField("EntityModel")
     name = StringField(required=True)
+    employee_id = StringField()
     entity_type = EnumField(EntityTypeEnum, required=True)
     entity_status = EnumField(EntityStatusEnum, required=True)
     bank = ReferenceField(DivisionModel)

@@ -121,6 +121,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_1.pk,
+            "employee_id": "aa",
         },
         {
             "company": ust_ind.pk,
@@ -130,6 +131,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_2.pk,
+            "employee_id": "ua",
         },
         {
             "company": ust_ind.pk,
