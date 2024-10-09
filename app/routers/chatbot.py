@@ -1,58 +1,29 @@
-import ollama
 from fastapi import APIRouter
-import json_repair
 
-from controllers.map import controller_map
-from databases.enums import DivisionTypeEnum
+from controllers.ollama import get_controller_from_question
+from fastapi import Depends, Request
+
 
 router = APIRouter(tags=["Chat Router"])
 
 
+def verify_user(req: Request):
+    if user := req.headers.get("Authorization"):
+        return user
+    # Here your code for verifying the token or whatever you use
+    return None
+
+
 @router.get("/")
-def chat(question: str):
-    response = ollama.chat(
-        model="maapu",
-        messages=[
-            {
-                "role": "user",
-                "content": question,
-            },
-        ],
-    )
+def chat(question: str, user: str | None = Depends(verify_user)):
+    print("Authorization", user)
+    user = "dummy user"
+    controller_or_error = get_controller_from_question(question)
+    # Handling Error
+    if isinstance(controller_or_error, dict):
+        error = controller_or_error
+        return error
 
-    ollama_response = response["message"]["content"]
-    print("Start of Ollama Response")
-    print(ollama_response)
-    print("End of Ollama Response")
-    data = json_repair.loads(ollama_response)
-    print(data)
+    controller = controller_or_error
 
-    if not isinstance(data, dict):
-        return {"status": "The Json is Errored"}
-
-    location_type = data.get("location_type")
-
-    if not location_type:
-        return {"status": "No Location Type Found"}
-
-    location_type = location_type.upper()
-
-    if location_type not in DivisionTypeEnum:
-        return {"status": "Invalid Location Type"}
-
-    controller = controller_map.get(DivisionTypeEnum(location_type))
-
-    if not controller:
-        return {
-            "status": f"The controller for location type {location_type} is not implemented"
-        }
-
-    # Example data from ollama:
-    # {'location_type': 'CAFETERIA', 'args': [{'food_type': 'burgers'}]}
-
-    if args := data.get("args"):
-        # Convert list of dict into single dict
-        args = {k: v for d in args for k, v in d.items()}
-        return controller(**args)
-
-    return controller()
+    return controller(user=user)

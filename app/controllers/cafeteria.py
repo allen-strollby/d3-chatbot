@@ -4,7 +4,7 @@ from databases.enums.division_type import DivisionTypeEnum
 from databases.enums.occupancy_status import OccupancyStatusEnum
 
 
-def get_cafeteria_food(**kwargs) -> dict | None:
+def get_cafeteria_food(user: str | None = None, **kwargs) -> dict | None:
     food_type = kwargs.get("food_type")
 
     queryset = DivisionModel.objects(
