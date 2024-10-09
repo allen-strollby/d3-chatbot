@@ -94,11 +94,35 @@
             "type": "RECREATION",
             "room_id": "02_rec_01"
         },
-        // Where is the gym
+        //    what are document needed for applying for gym?
         {
-            "type": "GYM",
-            "room_id": "04_gym_01"
-        },
+  "type": "GYM",
+  "documents_needed": "Fitness Certificate"
+},
+            //how to apply for gym at ust?
+        {
+  "type": "GYM",
+  "application_process": "Either you can apply through our HRMS website or +9112345678",
+  "documents_needed": "Fitness Certificate"
+},
+
+        //       what is the contact details of Gym Maintainer/Instructor/Trainer?
+
+        {
+  "type": "GYM",
+  "contact_details": "+9112345678"
+},
+        //    how much is details about fees of gym?
+{
+  "type": "GYM",
+  "maintenance_status": false,
+  "fee_structure": 600
+},
+        //    is gym is on maintenance?
+        {
+  "type": "GYM",
+  "maintenance_status": false
+},
         // Who to contact to renew my insurance?
         {
             "type": "INSURANCE",

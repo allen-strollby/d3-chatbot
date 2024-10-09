@@ -14,7 +14,7 @@ def get_gym_details(**kwargs) -> dict|None:
         type=DivisionTypeEnum.GYM,
     )
 
-    gym_info = {}
+    gym_info = {"type":"GYM"}
 
     if contact_details:
         gym_info["contact_details"] = queryset[0].divisions.phone if queryset else None
