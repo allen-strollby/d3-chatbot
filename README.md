@@ -1,4 +1,9 @@
-# Ollama 
+# Building and Running 
+
+Create docker image for server using 
+```bash
+docker build -t maapu-server .
+```
 
 Create model with ollama create
 
@@ -11,4 +16,5 @@ When running server also run the ollama server with
 ```bash
 ollama run
 ```
+
 
