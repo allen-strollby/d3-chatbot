@@ -17,3 +17,4 @@ class DivisionTypeEnum(enum.Enum):
     HR = "HR"
     HEALTH = "HEALTH"
     FOUNDERS_HALL = "FOUNDERS_HALL"
+    PLACE = "PLACE"
