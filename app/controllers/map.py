@@ -25,6 +25,8 @@ controller_map = {
     DivisionTypeEnum.TECH_BAR: get_tech_bar,
     DivisionTypeEnum.PLACE:get_location_details,
     DivisionTypeEnum.GYM:get_gym_details,
+    DivisionTypeEnum.PLACE: get_location_details,
+    DivisionTypeEnum.GYM: get_gym_details,
     DivisionTypeEnum.SECURITY: get_security,
     DivisionTypeEnum.RECREATION: get_recreation,
 }
