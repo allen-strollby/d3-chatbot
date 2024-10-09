@@ -179,6 +179,17 @@ files = [
 all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2)"]
 
 [[package]]
+name = "json-repair"
+version = "0.30.0"
+description = "A package to repair broken json strings"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "json_repair-0.30.0-py3-none-any.whl", hash = "sha256:bda4a5552dc12085c6363ff5acfcdb0c9cafc629989a2112081b7e205828228d"},
+    {file = "json_repair-0.30.0.tar.gz", hash = "sha256:24f12087a0e385ed47207eab1fca12bffd473e48db5bb803793d6c4fd97377ce"},
+]
+
+[[package]]
 name = "mongoengine"
 version = "0.29.1"
 description = "MongoEngine is a Python Object-Document Mapper for working with MongoDB."
@@ -514,4 +525,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "aee5bc1722bb67067e2104a397653d8a7a50b7950e33085630a6089c5db351b9"
+content-hash = "bc7d12359923f2e7476ca1514b2bc7af7dd758885d7bf1629150c06a3ea1a00c"
