@@ -12,7 +12,6 @@ class DivisionTypeEnum(enum.Enum):
     TECH_BAR = "TECH_BAR"
     SECURITY = "SECURITY"
     RECREATION = "RECREATION"
-    SERVER = "SERVER"
     GYM = "GYM"
     INSURANCE = "INSURANCE"
     HR = "HR"
