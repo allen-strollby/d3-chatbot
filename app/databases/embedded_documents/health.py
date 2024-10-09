@@ -1,4 +1,4 @@
-from mongoengine import EmbeddedDocumentField, EmbeddedDocument, ListField
+from mongoengine import EmbeddedDocumentField, EmbeddedDocument
 
 from databases.embedded_documents.health_items import HealthItemsEmbeddedModel
 
