@@ -9,6 +9,7 @@ from .atm import get_atm
 from .store import get_store
 from .tech_bar import get_tech_bar
 from .security import get_security
+from .recreation import get_recreation
 
 controller_map = {
     DivisionTypeEnum.CONFERENCE: get_available_conference_room,
@@ -21,4 +22,5 @@ controller_map = {
     DivisionTypeEnum.STORE: get_store,
     DivisionTypeEnum.TECH_BAR: get_tech_bar,
     DivisionTypeEnum.SECURITY: get_security,
+    DivisionTypeEnum.RECREATION: get_recreation,
 }
