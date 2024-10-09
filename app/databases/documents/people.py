@@ -14,3 +14,4 @@ class EntityModel(Document):
     entity_type = EnumField(EntityTypeEnum, required=True)
     entity_status = EnumField(EntityStatusEnum, required=True)
     bank = ReferenceField(DivisionModel)
+    hr = ReferenceField("EntityModel")

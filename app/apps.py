@@ -25,3 +25,6 @@ app.include_router(chatbot_router, prefix="/chat")
 # todo: Script for populating db
 # todo: Connection to cloud Atlas
 # todo: Web Server Deployment
+# todo: Availability and authorization of meeting rooms
+# todo: Questions regarding training room
+# todo: People's meeting status

@@ -236,3 +236,28 @@ the query type.
     Where is founders hall?
     Where is the lobby?
 """
+
+
+
+16. Queries to find the relationship between a given employee and their employee directory tree inside an organisation
+
+    - Response
+    {
+        "location_type": "PEOPLE",
+        "args": [
+            {
+                "type": "MANAGER"
+            }
+        ]
+    }
+    - Note
+    The field "type" should be mapped into one of the following based on the question asked
+    ASSOCIATE
+    MANAGER
+    HR
+    CEO
+
+    - Example
+    Who is my manager?
+    Who is my hsbc?
+"""
