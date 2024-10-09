@@ -3,11 +3,8 @@ from databases.enums.division_type import DivisionTypeEnum
 
 
 def get_location_details(**kwargs):
-
-    division_type  = DivisionTypeEnum(kwargs.get('name'))
-    result = DivisionModel.objects.get(
-        type = division_type
-    )
+    division_type = DivisionTypeEnum(kwargs.get("name"))
+    result = DivisionModel.objects.get(type=division_type)
     if result:
         return {
             "type": division_type.value,
@@ -16,6 +13,3 @@ def get_location_details(**kwargs):
             "is_authorized": True,
             "is_available": True,
         }
-
-
-
