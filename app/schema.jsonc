@@ -73,14 +73,9 @@
         {
             "location_type": "recreation"
         },
-        {
-            "location_type": "gym",
-            "args": [
-                {
-                    "name": "fees/status"
-                }
-            ]
-        },
+
+            { "location_type": "GYM", "args": [ { "contact_details": "yes/no" }, { "maintenance_status": "yes/no" }, { "fee_structure": "yes/no" }, { "application_process": "yes/no" }, { "documents_needed": "yes/no" } ] },
+
         {
             "location_type": "insurance"
         },
