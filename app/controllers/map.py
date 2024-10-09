@@ -5,6 +5,7 @@ from .cafeteria import get_cafeteria_food
 from .conference_room import get_available_conference_room
 from .job_vacancy import get_job_vacancies
 from .atm import get_atm
+from .store import get_store
 
 controller_map = {
     DivisionTypeEnum.CONFERENCE: get_available_conference_room,
@@ -13,4 +14,5 @@ controller_map = {
     DivisionTypeEnum.AMENITY: get_amenities,
     DivisionTypeEnum.BANK: get_bank,
     DivisionTypeEnum.ATM: get_atm,
+    DivisionTypeEnum.STORE: get_store,
 }
