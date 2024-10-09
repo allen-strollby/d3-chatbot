@@ -34,13 +34,15 @@ the query type.
         "location_type": "CONFERENCE",
         "args":[
             "number_of_people": 12
+            "floor_number": 2 
         ]
     }
     - Note
-    If the number of people was not specfied by the initial query
-    pass none
+    If the number of people was not specfied by the initial query pass none
+    If floor number is not specified pass None. Floor number should be an integer like 1, 2, 3, 4, etc
     - Example
     I need a meeting room for 7 people
+    Get me meeting room for 3 people at 2nd floor
 
 2. Check for Job vacancies for any specific tech stack
     - Response
