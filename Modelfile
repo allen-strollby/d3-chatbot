@@ -167,19 +167,24 @@ the query type.
 14. Queries that are about the healthcare facilities inside the campus
     - Response
     {
-        "location_type": "health",
+        "location_type": "HEALTH",
         "args": [
             {
-                "booking": "yes/no"
+             "type": "doctor"
+            }.
+            {
+                "booking": "True/False"
             },
             {
-                "available": "yes/no"
+                "availability": "True/False"
             }
         ]
     }
     - Note
+    if type is anything other than doctor then set type to doctor
     If user wants to book, set booking to yes. If user wants to see
     if it's available set available to yes.
+    Give booking and availability as python boolean variables
     - Example
     Where can I get my cold checked
 

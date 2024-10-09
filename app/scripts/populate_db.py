@@ -869,24 +869,17 @@ def populate_health(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 1,
-            "name": "Wellness Clinic",
+            "name": "Clinic",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.HEALTH,
             "is_open": True,
             "room_id": "01_cl_01",
             "divisions": HealthEmbeddedModel(
-                health_category=[
-                    HealthItemsEmbeddedModel(
-                        phone="+9112345678",
-                        type=HealthTypeEnum.HEALTH_CLINIC,
-                        available_days=["Tuesday", "Thursday"],
-                    ),
-                    HealthItemsEmbeddedModel(
-                        phone="+9112345678",
-                        type=HealthTypeEnum.DENTAL,
-                        available_days=["Monday", "Friday"],
-                    ),
-                ]
+                health_category=HealthItemsEmbeddedModel(
+                    phone="+9112345678",
+                    type=HealthTypeEnum.HEALTH_CLINIC,
+                    available_days=["Tuesday", "Thursday"],
+                )
             ),
         }
     ]
