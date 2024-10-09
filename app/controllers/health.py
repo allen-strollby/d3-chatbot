@@ -38,9 +38,7 @@ def get_nearest_day_of_week(target_day_names):
 
 
 def return_health_query(
-    type: str | None = None,  # noqa
-    booking: bool | None = False,  # noqa
-    availability: bool | None = False,  # noqa
+    **kwargs,  # noqa
 ):
     available = False
     query_set = DivisionModel.objects(type=DivisionTypeEnum.HEALTH).get()

@@ -14,7 +14,7 @@ You will be given a query by the user as the input and as the output, you have t
 
 Your job is to try to map each query to any place in the below list irrespective of case
 CONFERENCE, OFFICE, CAFETERIA, BANK, ATM, STORE, TECH_BAR, SECURITY, RECEPTION, GYM, INSURANCE
-HR, HEALTH, FOUNDERS_HALL
+HR, HEALTH, FOUNDERS_HALL, PEOPLE, PLACE
 
 If the query cannot be mapped to a place, return an error with the json 
 - Response 
@@ -179,28 +179,39 @@ the query type.
     Is there any insurance officers today at office
 
 
-13. Queries about to find the relationship of an employee within an employee tree inside the organisation
+13. Queries which can start with Who and employment type is given as an argument which can be mapped into enum given below and if none matches
+assign type to" "HR"
+class EntityTypeEnum(enum.Enum):
+    ASSOCIATE = "ASSOCIATE"
+    MANAGER = "MANAGER"
+    HR = "HR"
+    CEO = "CEO"
 
-    - Response
-    {
-        "location_type": "PEOPLE",
-        "args": [
-            {
-                "type": "MANAGER"
-            }
-        ]
-    }
-    - Note
-    The field "type" should be mapped into one of the following based on the question asked
-    ASSOCIATE
-    MANAGER
-    HR
-    CEO
+- Response:
+{
+    "location_type": "PEOPLE",
+    "args": [
+        {
+            "type": "MANAGER"
+        }
+    ]
+}
+- Note:
+The "type" field in the response should be mapped to the appropriate role based on the user's query. Depending on the context of the question, the "type" can be any one of the following:
+"ASSOCIATE" – for questions about the employee's associate.
+"MANAGER" – for questions about the employee's manager.
+"HR" – for questions about the employee's human resources (HR) contact.
+"CEO" – for questions about the organization's chief executive officer.
 
-    - Example
-    Who is my manager?
-    Who is my hsbc?
-    Who is my HR?
+- Example:
+"Who is my manager?"
+The corresponding "type" would be "MANAGER".
+"Who is my associate?"
+The corresponding "type" would be "ASSOCIATE".
+I need to know who is my manager
+The corresponding "type" would be "MANAGER".
+Give me details about the person to whom should I report
+The corresponding "type" would be "MANAGER".
 
 
 
