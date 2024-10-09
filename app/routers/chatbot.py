@@ -17,7 +17,7 @@ def verify_user(req: Request):
 @router.get("/")
 def chat(question: str, user: str | None = Depends(verify_user)):
     print("Authorization", user)
-    user = "dummy user"
+    user = "aa"
     controller_or_error = get_controller_from_question(question)
     # Handling Error
     if isinstance(controller_or_error, dict):

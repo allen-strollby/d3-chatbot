@@ -36,7 +36,7 @@ def get_nearest_day_of_week(target_day_names):
     return nearest_day.date()
 
 
-def return_insurance_query():
+def return_insurance_query(**kwargs):  # noqa
     query_set = DivisionModel.objects(type=DivisionTypeEnum.INSURANCE).get()
     response_json = {
         "type": query_set.type.value,
