@@ -8,6 +8,8 @@ from .job_vacancy import get_job_vacancies
 from .atm import get_atm
 from .store import get_store
 from .tech_bar import get_tech_bar
+from .location import get_location_details
+from .gym import get_gym_details
 from .security import get_security
 from .recreation import get_recreation
 
@@ -21,6 +23,8 @@ controller_map = {
     DivisionTypeEnum.ATM: get_atm,
     DivisionTypeEnum.STORE: get_store,
     DivisionTypeEnum.TECH_BAR: get_tech_bar,
+    DivisionTypeEnum.PLACE:get_location_details,
+    DivisionTypeEnum.GYM:get_gym_details
     DivisionTypeEnum.SECURITY: get_security,
     DivisionTypeEnum.RECREATION: get_recreation,
 }
