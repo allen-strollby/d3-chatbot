@@ -156,7 +156,7 @@ the query type.
     - Response
     { "location_type": "GYM", "args": [ { "contact_details": "yes/no" }, { "maintenance_status": "yes/no" }, { "fee_structure": "yes/no" }, { "application_process": "yes/no" }, { "documents_needed": "yes/no" } ] }
     - Example
-    what is the contact details of Gym Instructor?
+    what is the contact details of Gym Maintainer/Instructor/Trainer?
     is gym is on maintenance?
     how much is details about fees of gym?
     how to apply for gym at ust?
