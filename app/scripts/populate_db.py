@@ -290,7 +290,7 @@ def populate_conference(ust_ind):
             "name": "12 seater conference room",
             "room_id": "03_cf_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
-            "capacity": 12,
+            "capacity": 16,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
             "divisions": ConferenceEmbeddedModel(authorized_entities=[]),
