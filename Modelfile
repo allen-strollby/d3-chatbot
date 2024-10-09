@@ -153,8 +153,14 @@ the query type.
     {
         "location_type": "INSURANCE",
     }
+
+
     - Example
     I want to get my insurance renewed
+    Whom should I contact for enquiring about insurance
+    Is the insurance office open today
+    Is there any insurance officers today at office
+
 
 13. For queries that are related to the HR department
     - Response

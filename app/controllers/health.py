@@ -1,4 +1,3 @@
-import datetime
 from datetime import datetime, timedelta
 
 from databases.documents.divisions import DivisionModel
@@ -36,12 +35,6 @@ def get_nearest_day_of_week(target_day_names):
             nearest_day = future_day
 
     return nearest_day.date()
-
-
-# List of days you want to find
-days_to_check = ["Monday", "Wednesday"]
-
-nearest_day = get_nearest_day_of_week(days_to_check)
 
 
 def return_health_query(
