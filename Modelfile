@@ -68,7 +68,7 @@ the query type.
 4. Enquire about amenities inside the campus
     - Response
     {
-        "location_type": "amenity",
+        "location_type": "AMENITY",
         "args": [
             {
                 "type": "washroom"
@@ -116,7 +116,7 @@ the query type.
 8. Technical troubleshooting
     - Response
     {
-        "location_type": "tech_bar"
+        "location_type": "TECH_BAR"
     }
 
 9. Queries for Lost and Found Items

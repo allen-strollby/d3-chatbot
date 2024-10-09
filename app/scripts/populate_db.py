@@ -227,7 +227,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -239,7 +239,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -251,7 +251,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
         {
@@ -263,7 +263,7 @@ def populate_amenity(ust_ind):
             "type": DivisionTypeEnum.AMENITY,
             "is_open": True,
             "divisions": AmenityEmbeddedModel(
-                maintenance_status=False, amenity_type=AmenityTypeEnum.TOILET
+                maintenance_status=False, amenity_type=AmenityTypeEnum.WASHROOM
             ),
         },
     ]
