@@ -6,7 +6,8 @@
             "room_id": "01_conf_01",
             "is_authorized": true,
             "is_available": true,
-            "next_available": "2025 December 90"
+            "next_available": "2025 December 90",
+            "link": "form_link"
         },
         // Is there any availability for frontend devs in UST?
         {
@@ -111,7 +112,8 @@
         // Is the dentist available today?
         {
             "type": "HEALTH",
-            "room_id": "04_health_02"
+            "room_id": "04_health_02",
+             "is_available": true
         }
     ]
 }
