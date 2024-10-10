@@ -290,11 +290,11 @@ def populate_conference(ust_ind):
             "floor_number": 2,
             "name": "8 seater conference room",
             "room_id": "02_cf_01",
-            "occupancy_status": OccupancyStatusEnum.FREE,
+            "occupancy_status": OccupancyStatusEnum.OCCUPIED,
             "capacity": 8,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
-            "divisions": ConferenceEmbeddedModel(authorized_entities=[]),
+            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa"]),
         },
         {
             "company": ust_ind.pk,
@@ -305,7 +305,7 @@ def populate_conference(ust_ind):
             "capacity": 16,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
-            "divisions": ConferenceEmbeddedModel(authorized_entities=[]),
+            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa"]),
         },
     ]
     for data in generic_data:

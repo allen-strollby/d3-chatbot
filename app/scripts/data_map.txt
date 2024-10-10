@@ -1,0 +1,7 @@
+user aa
+8 seater not free  available time
+16 seater always free
+
+
+user ua
+

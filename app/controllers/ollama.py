@@ -44,7 +44,7 @@ def get_controller_from_question(question: str) -> dict | Callable:
     location_type = data.get("location_type")
 
     if not location_type:
-        return {"status": "Ollama did not retuen a location type"}
+        return {"status": "Ollama did not return a location type"}
 
     location_type = location_type.upper()
 
