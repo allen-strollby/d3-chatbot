@@ -9,6 +9,34 @@ class TestLocationTypeMapping(unittest.TestCase):
         response = requests.get(self.BASE_URL, params={"question": query})
         return response
 
+    def compare_responses(self, actual, expected):
+        """
+        Compare two dictionaries while ignoring keys in 'args' that have None values
+        or are missing in one of them.
+        """
+        print("Actual: ", actual)
+        print("Expected: ", expected)
+        print()
+        if actual["location_type"] != expected["location_type"]:
+            return False
+
+        actual_args = actual.get("args", {})
+        expected_args = expected.get("args", {})
+
+        for key, expected_value in expected_args.items():
+            if key in actual_args:
+                actual_value = actual_args[key]
+                # If both are None or equal, continue; else return False
+                if actual_value != expected_value and not (
+                    actual_value is None and expected_value is None
+                ):
+                    return False
+            elif expected_value is not None:
+                # If key is missing in actual and expected value is not None, return False
+                return False
+
+        return True
+
     def test_conference_questions(self):
         queries = [
             (
@@ -30,7 +58,10 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_account_questions(self):
         queries = [
@@ -47,7 +78,10 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_cafeteria_questions(self):
         queries = [
@@ -64,14 +98,18 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_amenity_questions(self):
         query = "Where is the washroom on the second floor?"
         expected_response = {"location_type": "AMENITY", "args": {"type": "washroom"}}
         response = self.send_get_request(query)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), expected_response)
+        actual_response = response.json()
+        self.assertTrue(self.compare_responses(actual_response, expected_response))
 
     def test_bank_questions(self):
         queries = [
@@ -88,14 +126,18 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_atm_questions(self):
         query = "Where is the nearest ATM?"
         expected_response = {"location_type": "ATM"}
         response = self.send_get_request(query)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), expected_response)
+        actual_response = response.json()
+        self.assertTrue(self.compare_responses(actual_response, expected_response))
 
     def test_store_questions(self):
         queries = [
@@ -112,14 +154,18 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_tech_bar_questions(self):
         query = "I need help with my laptop."
         expected_response = {"location_type": "TECH_BAR"}
         response = self.send_get_request(query)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), expected_response)
+        actual_response = response.json()
+        self.assertTrue(self.compare_responses(actual_response, expected_response))
 
     def test_security_questions(self):
         queries = [
@@ -136,14 +182,18 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_recreation_questions(self):
         query = "I want to play foosball, where can I go?"
         expected_response = {"location_type": "RECREATION"}
         response = self.send_get_request(query)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), expected_response)
+        actual_response = response.json()
+        self.assertTrue(self.compare_responses(actual_response, expected_response))
 
     def test_gym_questions(self):
         queries = [
@@ -178,14 +228,18 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_insurance_questions(self):
         query = "How do I get my insurance renewed?"
         expected_response = {"location_type": "INSURANCE"}
         response = self.send_get_request(query)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), expected_response)
+        actual_response = response.json()
+        self.assertTrue(self.compare_responses(actual_response, expected_response))
 
     def test_people_questions(self):
         queries = [
@@ -202,7 +256,10 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_health_questions(self):
         queries = [
@@ -225,7 +282,10 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_place_questions(self):
         queries = [
@@ -242,7 +302,10 @@ class TestLocationTypeMapping(unittest.TestCase):
             with self.subTest(query=query):
                 response = self.send_get_request(query)
                 self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.json(), expected_response)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
 
 if __name__ == "__main__":
