@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from controllers.ollama import get_controller_from_question
+from controllers.ollama import get_controller_from_question, get_ollama_response
 from fastapi import Depends, Request
 
 
@@ -14,7 +14,7 @@ def verify_user(req: Request):
     return None
 
 
-@router.get("/")
+@router.get("")
 def chat(question: str, user: str | None = Depends(verify_user)):
     print("Authorization", user)
     user = "aa"
@@ -27,3 +27,8 @@ def chat(question: str, user: str | None = Depends(verify_user)):
     controller = controller_or_error
 
     return controller(user=user)
+
+
+@router.get("/ollama")
+def chat(question: str):
+    return get_ollama_response(question)

@@ -12,26 +12,24 @@ def get_gym_details(**kwargs) -> dict | None:
     # Assuming you have a GymModel for your gym data
     queryset = DivisionModel.objects(
         type=DivisionTypeEnum.GYM,
-    )
+    ).first()
 
-    gym_info = {"type": "GYM"}
+    gym_info = {"type": "GYM", "room_id": queryset.room_id}
 
     if contact_details:
-        gym_info["contact_details"] = queryset[0].divisions.phone if queryset else None
+        gym_info["contact_details"] = queryset.divisions.phone if queryset else None
 
     if maintenance_status:
         gym_info["maintenance_status"] = (
-            queryset[0].divisions.maintenance_status if queryset else None
+            queryset.divisions.maintenance_status if queryset else None
         )
 
     if fee_structure:
-        gym_info["fee_structure"] = (
-            queryset[0].divisions.fee_details if queryset else None
-        )
+        gym_info["fee_structure"] = queryset.divisions.fee_details if queryset else None
 
     if application_process:
         gym_info["application_process"] = (
-            f"Either you can apply through our HRMS website or {queryset[0].divisions.phone}"
+            f"Either you can apply through our HRMS website or {queryset.divisions.phone}"
             if queryset
             else None
         )
