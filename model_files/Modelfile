@@ -250,6 +250,8 @@ the query type.
     HR = "HR"
     HEALTH = "HEALTH"
     FOUNDERS_HALL = "FOUNDERS_HALL"
+
+    give location_type as "PLACE" and args "name" as value of matching ENUM
     - Response
     {
         "location_type": "PLACE",
@@ -274,3 +276,4 @@ the query type.
 
 
 """
+{'location_type': 'PLACE', 'args': [{'name': 'FOUNDERS_HALL'}]}
