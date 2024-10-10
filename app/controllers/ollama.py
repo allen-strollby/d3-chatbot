@@ -12,17 +12,9 @@ def get_ollama_response(question: str):
         client = ollama.Client(host="http://ollama:11434")
     else:
         client = ollama.Client()
-    response = client.chat(
-        model="maapu",
-        messages=[
-            {
-                "role": "user",
-                "content": question,
-            },
-        ],
-    )
+    response = client.generate(model="maapu", prompt=question)
 
-    ollama_response = response["message"]["content"]
+    ollama_response = response["response"]
 
     print("Start of Ollama Response")
     print(ollama_response)
@@ -65,12 +57,7 @@ def get_controller_from_question(question: str) -> dict | Callable:
             "status": f"The controller for location type {location_type} is not implemented"
         }
 
-    # TODO: handle case where ollama responds like this
-    # {'location_type': 'CONFERENCE', 'args': ['number_of_people', 16, 'floor_number', 3]}
-
     if args := data.get("args"):
-        # Convert list of dict into single dict
-        args = {k: v for d in args for k, v in d.items()}
         return partial(controller, **args)
 
     return controller

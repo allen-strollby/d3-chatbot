@@ -4,7 +4,7 @@ from databases.enums.division_type import DivisionTypeEnum
 
 def get_location_details(**kwargs):
     division_type = DivisionTypeEnum(kwargs.get("name"))
-    result = DivisionModel.objects.get(type=division_type)
+    result = DivisionModel.objects(type=division_type).first()
     if result:
         return {
             "type": division_type.value,

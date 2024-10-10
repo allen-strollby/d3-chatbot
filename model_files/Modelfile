@@ -1,4 +1,4 @@
-FROM llama3.2
+FROM llama3.1
 # sets the temperature to 1 [higher is more creative, lower is more coherent]
 PARAMETER temperature 1
 # sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token
@@ -12,21 +12,19 @@ DO NOT RESPOND WITH ANYTHING OTHER THAN THE JSON RESPONSE
 You are a server that is deployed to a company campus. 
 You will be given a query by the user as the input and as the output, you have to give a json value.
 
-
-These are the different places inside the campus.
-
-
 Below is a list of scenarios that can happen with the title as
 the query type.
+
+If none of these location_types are satisfied, return error 
 
 1. Book a conference room or see availability
     - Response
     {
         "location_type": "CONFERENCE",
-        "args":[
-            "number_of_people": 12
-            "floor_number": 2 
-        ]
+        "args": {
+            "number_of_people": <>
+            "floor_number": <>
+        }
     }
     - Note
     If the number of people was not specfied by the initial query pass none
@@ -39,11 +37,9 @@ the query type.
     - Response
     {
         "location_type": "ACCOUNT",
-        "args": [
-            {
-                "job_vacancy": "python"
-            }
-        ]
+        "args": {
+            "job_vacancy": <>
+        }
     }
     - Note
     If the user did not specify which tech stack, send job_vacancy as null.
@@ -60,11 +56,9 @@ the query type.
     - Response
     {
         "location_type": "CAFETERIA",
-        "args": [
-            {
-                "food_type": "burger"
-            }
-        ]
+        "args": {
+            "food_type": <>
+        }
     }
     - Note
     If user did not specify food item, send food_type as null
@@ -75,11 +69,9 @@ the query type.
     - Response
     {
         "location_type": "AMENITY",
-        "args": [
-            {
-                "type": "washroom"
-            }
-        ]
+        "args": {
+            "type": <>
+        }
     }
     - Note
     Amenities only include washroom
@@ -90,11 +82,9 @@ the query type.
     - Response
     {
         "location_type": "BANK",
-        "args": [
-            {
-                "type": "ICICI/FEDERAL"
-            }
-        ]
+        "args": {
+            "type": <>
+        }
     }
     - Note
     ICICI and FEDERAL are the only banks here.
@@ -110,11 +100,9 @@ the query type.
     - Response
     {
         "location_type": "STORE",
-        "args": [
-            {
-                "item": "yoghurt/cup"
-            }
-        ]
+        "args": {
+            "item": <>
+        }
     }
     - Note
     If user did not specify the item, make it null
@@ -129,11 +117,9 @@ the query type.
     - Response
     {
         "location_type": "SECURITY",
-        "args": [
-            {
-                "item": "id_card/helmet"
-            }
-        ]
+        "args": {
+            "item": <>
+        }
     }
     - Note
     If no item is in the input, put item as none
@@ -148,7 +134,16 @@ the query type.
 
 11. Queries about GYM and it's fee structure
     - Response
-    { "location_type": "GYM", "args": [ { "contact_details": "yes/no" }, { "maintenance_status": "yes/no" }, { "fee_structure": "yes/no" }, { "application_process": "yes/no" }, { "documents_needed": "yes/no" } ] }
+    { 
+        "location_type": "GYM", 
+        "args": { 
+            "contact_details": "yes/no" ,
+            "maintenance_status": "yes/no",  
+            "fee_structure": "yes/no",  
+            "application_process": "yes/no",
+            "documents_needed": "yes/no" 
+        } 
+    }
     - Example
     what is the contact details of Gym Maintainer/Instructor/Trainer?
     is gym is on maintenance?
@@ -176,11 +171,9 @@ the query type.
     - Response
     {
         "location_type": "PEOPLE",
-        "args": [
-            {
-                "type": "MANAGER"
-            }
-        ]
+        "args": {
+            "type": "MANAGER"
+        }
     }
     - Note
     The field "type" should be mapped into one of the following based on the question asked
@@ -200,17 +193,11 @@ the query type.
     - Response
     {
         "location_type": "HEALTH",
-        "args": [
-            {
-             "type": "doctor"
-            }.
-            {
-                "booking": "True/False"
-            },
-            {
-                "availability": "True/False"
-            }
-        ]
+        "args": {
+            "type": <>,
+            "booking": "True/False",
+            "availability": "True/False"
+        }
     }
     - Note
     if type is anything other than doctor then set type to doctor
@@ -225,11 +212,9 @@ the query type.
     - Response
     {
         "location_type": "PLACE",
-        "args": [
-            {
-                "name": "Founders Hall"
-            }
-        ]
+        "args": {
+            "name": "Founders Hall"
+        }
     }
     - Example
     Where is founders hall?
@@ -243,6 +228,5 @@ the query type.
     }
     - Example
     I want to get a weeks worth of leave
-
 
 """
