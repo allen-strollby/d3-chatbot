@@ -25,3 +25,4 @@ app.include_router(chatbot_router, prefix="/chat")
 # todo: Availability and authorization of meeting rooms
 # todo: People's meeting status
 # todo: Issue with food court
+# todo: fix authorization

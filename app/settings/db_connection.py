@@ -1,3 +1,7 @@
 from mongoengine import connect
+import os
 
-connect(db="ChatbotDB")
+if os.environ.get("DOCKER_COMPOSE"):
+    connect(host="mongodb://mongodb:27017/ChatbotDB")
+else:
+    connect(db="ChatbotDB")
