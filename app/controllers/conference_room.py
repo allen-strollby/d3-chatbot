@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from databases.documents.divisions import DivisionModel
 from databases.enums.division_type import DivisionTypeEnum
 from databases.enums.occupancy_status import OccupancyStatusEnum
@@ -22,6 +24,9 @@ def get_available_conference_room(**kwargs) -> dict | None:
 
     num = kwargs.get("number_of_people")
     floor_number = kwargs.get("floor_number")
+    user = kwargs.get("user")
+    auth_user = False
+    availability = False
 
     queryset = DivisionModel.objects(type=DivisionTypeEnum.CONFERENCE)
 
@@ -32,24 +37,30 @@ def get_available_conference_room(**kwargs) -> dict | None:
         queryset = queryset.filter(floor_number=floor_number)
 
     for room in queryset:
+        if user in room.divisions.authorized_entities:
+            auth_user = True
         if room.occupancy_status == OccupancyStatusEnum.FREE:
+            availability = True
+        if (
+            room.occupancy_status == OccupancyStatusEnum.FREE
+            and user in room.divisions.authorized_entities
+        ):
             return {
                 "type": "CONFERENCE",
                 "room_id": room.room_id,
                 "is_authorized": True,
                 "is_available": True,
                 "capacity": room.capacity,
-                # "next_available": "2025 December 90"
             }
-
+    available_time = datetime.now() + timedelta(hours=2)
     if queryset:
         return {
             "type": "CONFERENCE",
             "room_id": queryset[0].room_id,
-            "is_authorized": True,
-            "is_available": True,
+            "is_authorized": auth_user,
+            "is_available": availability,
             "capacity": queryset[0].capacity,
-            # "next_available": "2025 December 90"
+            "next_available": available_time,
         }
 
     return None
