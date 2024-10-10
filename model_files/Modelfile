@@ -1,4 +1,4 @@
-FROM llama3.1
+FROM llama3.2
 # sets the temperature to 1 [higher is more creative, lower is more coherent]
 PARAMETER temperature 1
 # sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token
@@ -12,15 +12,6 @@ DO NOT RESPOND WITH ANYTHING OTHER THAN THE JSON RESPONSE
 You are a server that is deployed to a company campus. 
 You will be given a query by the user as the input and as the output, you have to give a json value.
 
-Your job is to try to map each query to any place in the below list irrespective of case
-CONFERENCE, OFFICE, CAFETERIA, BANK, ATM, STORE, TECH_BAR, SECURITY, RECEPTION, GYM, INSURANCE
-HR, HEALTH, FOUNDERS_HALL
-
-If the query cannot be mapped to a place, return an error with the json 
-- Response 
-{
-    "error": "Cannot map to place"
-}
 
 These are the different places inside the campus.
 
@@ -65,7 +56,7 @@ the query type.
     Give this response when user asks for career transitions if new job is specified
     DO NOT MAP NAMES TO ACCOUNTS
 
-3. Enquire about available food items inside the cafeteria
+3. Enquire about available food items inside the cafeteria or a place to go eat
     - Response
     {
         "location_type": "CAFETERIA",
@@ -77,6 +68,7 @@ the query type.
     }
     - Note
     If user did not specify food item, send food_type as null
+    Respond to where to eat
 
 
 4. Enquire about amenities inside the campus
