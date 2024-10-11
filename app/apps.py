@@ -1,8 +1,4 @@
-from fastapi import FastAPI, Request, status
-from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
-
-import logging
+from fastapi import FastAPI
 
 import settings  # noqa
 from routers import health_check_router, chatbot_router
@@ -22,7 +18,6 @@ app.include_router(health_check_router, prefix="")
 app.include_router(chatbot_router, prefix="/chat")
 
 # todo: Indexing of documents
-# todo: Controllers
 # todo: Advanced Queries for Chatbot
 # todo: Connection to cloud Atlas
 # todo: Web Server Deployment
