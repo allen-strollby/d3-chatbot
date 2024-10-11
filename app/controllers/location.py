@@ -1,5 +1,4 @@
 from databases.documents.divisions import DivisionModel
-from databases.enums.division_type import DivisionTypeEnum
 
 
 def get_location_details(**kwargs):

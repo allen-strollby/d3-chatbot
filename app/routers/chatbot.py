@@ -30,5 +30,5 @@ def chat(question: str, user: str | None = Depends(verify_user)):
 
 
 @router.get("/ollama")
-def chat(question: str):
+def chat_ollama(question: str):
     return get_ollama_response(question)
