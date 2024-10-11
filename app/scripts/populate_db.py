@@ -482,7 +482,7 @@ def populate_cafeteria(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 0,
-            "name": "Central Perk",
+            "name": "Los Pollos Hermanos",
             "room_id": "00_res_02",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.CAFETERIA,
@@ -502,7 +502,7 @@ def populate_cafeteria(ust_ind):
         {
             "company": ust_ind.pk,
             "floor_number": 0,
-            "name": "Los Polos Hermanos",
+            "name": "Central Perk",
             "room_id": "00_res_03",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "type": DivisionTypeEnum.CAFETERIA,
