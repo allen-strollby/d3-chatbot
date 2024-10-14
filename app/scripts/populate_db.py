@@ -67,6 +67,7 @@ def populate_people(ust_ind, ust_us, ust_au):
         "name": "Robert Thomson",
         "entity_type": EntityTypeEnum.HR,
         "entity_status": EntityStatusEnum.LEAVE,
+        "ceo": ceo.pk
     }
     EntityModel.objects.create(**hr_manager_data)
     hr_manager = EntityModel.objects(company=ust_au.pk).get()
@@ -80,6 +81,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.MEETING,
             "hr": hr_manager.pk,
+            "ceo": ceo.pk
         },
         {
             "company": ust_ind.pk,
@@ -89,6 +91,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_manager.pk,
+            "ceo": ceo.pk
         },
     ]
     for hr in hr_data:
@@ -101,6 +104,8 @@ def populate_people(ust_ind, ust_us, ust_au):
     hr_1 = EntityModel.objects(name="David Livingston").get()
     hr_2 = EntityModel.objects(name="Ram Kumar").get()
 
+    ceo = EntityModel.objects(entity_type=EntityTypeEnum.CEO).get()
+
     manager_data = {
         "company": ust_ind.pk,
         "office": account_1.pk,
@@ -109,6 +114,8 @@ def populate_people(ust_ind, ust_us, ust_au):
         "entity_type": EntityTypeEnum.MANAGER,
         "entity_status": EntityStatusEnum.OFFICE,
         "hr": hr_2.pk,
+        "employee_id": "am",
+        "ceo": ceo.pk
     }
     manager = EntityModel.objects.create(**manager_data)
 
@@ -122,6 +129,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_1.pk,
             "employee_id": "aa",
+            "ceo": ceo.pk
         },
         {
             "company": ust_ind.pk,
@@ -132,6 +140,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_2.pk,
             "employee_id": "ua",
+            "ceo": ceo.pk
         },
         {
             "company": ust_ind.pk,
@@ -141,6 +150,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_1.pk,
+            "ceo": ceo.pk
         },
     ]
     for data in associate_data:

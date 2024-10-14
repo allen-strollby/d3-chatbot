@@ -3,7 +3,7 @@ import requests
 
 
 class TestLocationTypeMapping(unittest.TestCase):
-    BASE_URL = "http://localhost:8000/chat/ollama"
+    BASE_URL = "http://localhost:8098/chat/ollama"
 
     def send_get_request(self, query):
         response = requests.get(self.BASE_URL, params={"question": query})
