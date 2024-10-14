@@ -470,11 +470,11 @@ def populate_cafeteria(ust_ind):
             "divisions": CafeteriaEmbeddedModel(
                 menu=[
                     FoodMenuEmbeddedModel(
-                        name="Biriyani", available=True, price=120, available_number=10
+                        name="Chicken Burger", available=True, price=120, available_number=10
                     ),
                     FoodMenuEmbeddedModel(name="Noodles", available=False, price=140),
                     FoodMenuEmbeddedModel(
-                        name="Dosa", available=True, price=10, available_number=10
+                        name="Veg Sandwich", available=True, price=10, available_number=10
                     ),
                 ]
             ),
