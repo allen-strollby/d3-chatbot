@@ -29,6 +29,7 @@ The location types in the campus are :-
     13. INSURANCE: Queries about insurance
     14. HEALTH: Doctors are here
     15. PLACE: Other places in the campus. Example founders hall
+    16. PEOPLE: Salary Related Issues,Personal issues
 
 If none of these location_types are satisfied, return error 
 
@@ -70,7 +71,7 @@ the query type.
     Give this response when user asks for career transitions if new job is specified
     DO NOT MAP NAMES TO ACCOUNTS
 
-3. Enquire about available food items inside the cafeteria or a place to go eat
+3. Enquire about available food items inside the cafeteria or a place to go eat or to drink tea or juices or water
     - Response
     {
         "location_type": "CAFETERIA",
@@ -81,6 +82,7 @@ the query type.
     - Note
     If user did not specify food item, send food_type as null
     Respond to where to eat
+
 
 
 4. Enquire about amenities inside the campus
@@ -130,8 +132,13 @@ the query type.
     {
         "location_type": "TECH_BAR"
     }
+    - Example
+    1. any Help desk for resolving technical issues with devices or software.?
+    2. how to setup my new laptop?
+    3. i want to install a software in my laptop?
+    4. how to transfer my assets like laptop,data card?
 
-9. Queries for Lost and Found Items
+9. Queries for Lost and Found Items or whether umbrella available
     - Response
     {
         "location_type": "SECURITY",
@@ -148,7 +155,9 @@ the query type.
         "location_type": "RECREATION",
     }
     - Example
-    I need to play foosball
+    1. I need to play foosball
+    2. I want to sing
+
 
 11. Queries about GYM and it's fee structure
     - Response
@@ -190,11 +199,11 @@ the query type.
     {
         "location_type": "PEOPLE",
         "args": {
-            "type": "MANAGER"
+            "entity_type": "MANAGER"
         }
     }
     - Note
-    The field "type" should be mapped into one of the following based on the question asked
+    The field "entity_type" should be mapped into one of the following based on the question asked
     ASSOCIATE
     MANAGER
     HR
@@ -222,7 +231,10 @@ the query type.
     if it's available set available to yes.
     Give booking and availability as python boolean variables
     - Example
-    Where can I get my cold checked
+    1. Where can I get my cold checked
+    2. I have mental issues
+    3. I have physical issues
+    4. I have stomach issues
 
 15. Queries about where a place is
 

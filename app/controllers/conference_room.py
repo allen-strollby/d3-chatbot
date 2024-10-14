@@ -23,6 +23,9 @@ def get_available_conference_room(**kwargs) -> dict | None:
     """
 
     num = kwargs.get("number_of_people")
+    if num == 0:
+        return None
+
     floor_number = kwargs.get("floor_number")
     user = kwargs.get("user")
     auth_user = False
