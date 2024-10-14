@@ -304,7 +304,7 @@ def populate_conference(ust_ind):
             "capacity": 8,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
-            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa"]),
+            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa", "am"]),
         },
         {
             "company": ust_ind.pk,
@@ -315,7 +315,7 @@ def populate_conference(ust_ind):
             "capacity": 16,
             "type": DivisionTypeEnum.CONFERENCE,
             "is_open": True,
-            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa"]),
+            "divisions": ConferenceEmbeddedModel(authorized_entities=["aa", "am"]),
         },
     ]
     for data in generic_data:

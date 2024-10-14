@@ -17,7 +17,6 @@ def return_employee_tree(**kwargs):
 
     return {
         "type": "PEOPLE",
-        "name": employee.name,
         "status": employee.entity_status.value,
         "room_id": room_id if room_id is not None else employee.office.room_id,
         "entity": EntityTypeEnum(entity_type.upper()),
