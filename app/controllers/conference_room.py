@@ -30,11 +30,15 @@ def get_available_conference_room(**kwargs) -> dict | None:
 
     queryset = DivisionModel.objects(type=DivisionTypeEnum.CONFERENCE)
 
-    if num:
-        queryset = queryset.filter(capacity__gte=num)
-
     if floor_number:
         queryset = queryset.filter(floor_number=floor_number)
+
+    if num:
+        queryset = queryset.filter(capacity__gte=num)
+        if queryset is None:
+            return None
+
+
 
     for room in queryset:
         if user in room.divisions.authorized_entities:
