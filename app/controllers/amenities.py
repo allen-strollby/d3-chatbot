@@ -22,7 +22,8 @@ def get_amenities(**kwargs) -> dict | None:
     original_queryset = queryset
     if floor_number is not None:
         queryset = queryset.filter(floor_number=floor_number)
-        if queryset is None:
+
+        if not queryset:
             queryset = original_queryset
 
 
