@@ -6,6 +6,7 @@ from databases.enums.occupancy_status import OccupancyStatusEnum
 
 def get_amenities(**kwargs) -> dict | None:
     amenity_type = kwargs.get("type")
+    floor_number = kwargs.get("floor_number")
 
     if not amenity_type:
         return None
@@ -18,6 +19,11 @@ def get_amenities(**kwargs) -> dict | None:
         divisions__amenity_type=AmenityTypeEnum(amenity_type),
         occupancy_status=OccupancyStatusEnum.FREE,
     )
+    original_queryset = queryset
+    if floor_number is not None:
+        queryset = queryset.filter(floor_number=floor_number)
+        if queryset is None:
+            queryset = original_queryset
 
     if queryset:
         model = queryset[0]

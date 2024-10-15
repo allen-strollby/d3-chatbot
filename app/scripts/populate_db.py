@@ -67,7 +67,7 @@ def populate_people(ust_ind, ust_us, ust_au):
         "name": "Robert Thomson",
         "entity_type": EntityTypeEnum.HR,
         "entity_status": EntityStatusEnum.LEAVE,
-        "ceo": ceo.pk
+        "ceo": ceo.pk,
     }
     EntityModel.objects.create(**hr_manager_data)
     hr_manager = EntityModel.objects(company=ust_au.pk).get()
@@ -81,7 +81,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.MEETING,
             "hr": hr_manager.pk,
-            "ceo": ceo.pk
+            "ceo": ceo.pk,
         },
         {
             "company": ust_ind.pk,
@@ -91,7 +91,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.HR,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_manager.pk,
-            "ceo": ceo.pk
+            "ceo": ceo.pk,
         },
     ]
     for hr in hr_data:
@@ -115,7 +115,7 @@ def populate_people(ust_ind, ust_us, ust_au):
         "entity_status": EntityStatusEnum.OFFICE,
         "hr": hr_2.pk,
         "employee_id": "am",
-        "ceo": ceo.pk
+        "ceo": ceo.pk,
     }
     manager = EntityModel.objects.create(**manager_data)
 
@@ -129,7 +129,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_1.pk,
             "employee_id": "aa",
-            "ceo": ceo.pk
+            "ceo": ceo.pk,
         },
         {
             "company": ust_ind.pk,
@@ -140,7 +140,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_2.pk,
             "employee_id": "ua",
-            "ceo": ceo.pk
+            "ceo": ceo.pk,
         },
         {
             "company": ust_ind.pk,
@@ -150,7 +150,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "entity_type": EntityTypeEnum.ASSOCIATE,
             "entity_status": EntityStatusEnum.OFFICE,
             "hr": hr_1.pk,
-            "ceo": ceo.pk
+            "ceo": ceo.pk,
         },
     ]
     for data in associate_data:
@@ -480,11 +480,17 @@ def populate_cafeteria(ust_ind):
             "divisions": CafeteriaEmbeddedModel(
                 menu=[
                     FoodMenuEmbeddedModel(
-                        name="Chicken Burger", available=True, price=120, available_number=10
+                        name="Chicken Burger",
+                        available=True,
+                        price=120,
+                        available_number=10,
                     ),
                     FoodMenuEmbeddedModel(name="Noodles", available=False, price=140),
                     FoodMenuEmbeddedModel(
-                        name="Veg Sandwich", available=True, price=10, available_number=10
+                        name="Veg Sandwich",
+                        available=True,
+                        price=10,
+                        available_number=10,
                     ),
                 ]
             ),
