@@ -209,11 +209,13 @@ the query type.
     MANAGER
     HR
     CEO
+    REPORTEE
 
     - Example
     Who is my manager?
     Who is my hsbc?
     Who is my HR?
+    who is my reportee?
 
 
 14. Queries that are about the healthcare facilities inside the campus

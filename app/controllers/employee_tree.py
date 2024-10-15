@@ -14,6 +14,16 @@ def return_employee_tree(**kwargs):
             room_id = employee.hr.office.room_id
         case "MANAGER":
             room_id = employee.manager.office.room_id
+        case "REPORTEE":
+            if user == "am":
+                employee = EntityModel.objects(employee_id="aa").get()
+                return {
+                    "type": "PEOPLE",
+                    "status": employee.entity_status.value,
+                    "room_id": employee.office.room_id,
+                    "entity": EntityTypeEnum.ASSOCIATE,
+                }
+            return None
 
     return {
         "type": "PEOPLE",
