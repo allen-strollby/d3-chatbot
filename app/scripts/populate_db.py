@@ -49,20 +49,20 @@ def random_string():
 
 
 def populate_people(ust_ind, ust_us, ust_au):
-    ceo_office = DivisionModel.objects(name="CEO").get()
+    board_room = DivisionModel.objects(room_id="03_ac_03").get()
     ceo_data = {
         "company": ust_us.pk,
-        "office": ceo_office.pk,
+        "office": board_room.pk,
         "name": "Alex Peirson",
         "entity_type": EntityTypeEnum.CEO,
         "entity_status": EntityStatusEnum.OOO,
     }
     EntityModel.objects.create(**ceo_data)
-    hr_manager_office = DivisionModel.objects(name="HR-HEAD").get()
+    hr_office = DivisionModel.objects(name="HR").get()
     ceo = EntityModel.objects(entity_type=EntityTypeEnum.CEO).get()
     hr_manager_data = {
         "company": ust_au.pk,
-        "office": hr_manager_office.pk,
+        "office": hr_office.pk,
         "manager": ceo.pk,
         "name": "Robert Thomson",
         "entity_type": EntityTypeEnum.HR,
@@ -71,7 +71,7 @@ def populate_people(ust_ind, ust_us, ust_au):
     }
     EntityModel.objects.create(**hr_manager_data)
     hr_manager = EntityModel.objects(company=ust_au.pk).get()
-    hr_office = DivisionModel.objects(name="HR").get()
+
     hr_data = [
         {
             "company": ust_ind.pk,
@@ -98,7 +98,7 @@ def populate_people(ust_ind, ust_us, ust_au):
         EntityModel.objects.create(**hr)
 
     account_1 = DivisionModel.objects(name="Telecom").get()
-    account_2 = DivisionModel.objects(name="Automation").get()
+    account_2 = DivisionModel.objects(name="Board Room").get()
     account_3 = DivisionModel.objects(name="Mobility").get()
 
     hr_1 = EntityModel.objects(name="David Livingston").get()
@@ -109,7 +109,7 @@ def populate_people(ust_ind, ust_us, ust_au):
     manager_data = {
         "company": ust_ind.pk,
         "office": account_1.pk,
-        "manager": hr_1.pk,
+        "manager": hr_manager.pk,
         "name": "Tom Holland",
         "entity_type": EntityTypeEnum.MANAGER,
         "entity_status": EntityStatusEnum.OFFICE,
@@ -414,7 +414,7 @@ def populate_office(ust_ind, ust_us):
         {
             "company": ust_ind.pk,
             "floor_number": 3,
-            "name": "Automation",
+            "name": "Board Room",
             "room_id": "03_ac_03",
             "occupancy_status": OccupancyStatusEnum.FREE,
             "capacity": 40,
