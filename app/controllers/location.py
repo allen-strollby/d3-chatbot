@@ -6,12 +6,18 @@ def get_location_details(**kwargs):
     divisions: list[DivisionModel] = DivisionModel.objects.all()
     if name == "HR":
         return {
-                "type": "HR",
-                "room_id": "03_hr_01",
-                # "phone_number": result.divisions.phone,
-                "is_authorized": True,
-                "is_available": True,
-            }
+            "type": "HR",
+            "room_id": "03_hr_01",
+            # "phone_number": result.divisions.phone,
+            "is_authorized": True,
+            "is_available": True,
+        }
+    if name.upper() == "PANTRY":
+        return {
+            "type": name,
+            "room_id": "00_eat_01",
+
+        }
 
     for room in divisions:
         if str(room.name).lower() == name.lower():
