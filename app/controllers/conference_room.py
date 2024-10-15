@@ -41,8 +41,6 @@ def get_available_conference_room(**kwargs) -> dict | None:
         if queryset is None:
             return None
 
-
-
     for room in queryset:
         if user in room.divisions.authorized_entities:
             auth_user = True
