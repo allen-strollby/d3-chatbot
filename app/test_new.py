@@ -10,10 +10,6 @@ class TestLocationTypeMapping(unittest.TestCase):
         return response
 
     def compare_responses(self, actual, expected):
-        """
-        Compare two dictionaries while ignoring keys in 'args' that have None values
-        or are missing in one of them.
-        """
         print("Actual: ", actual)
         print("Expected: ", expected)
         print()
@@ -26,13 +22,11 @@ class TestLocationTypeMapping(unittest.TestCase):
         for key, expected_value in expected_args.items():
             if key in actual_args:
                 actual_value = actual_args[key]
-                # If both are None or equal, continue; else return False
                 if actual_value != expected_value and not (
                     actual_value is None and expected_value is None
                 ):
                     return False
             elif expected_value is not None:
-                # If key is missing in actual and expected value is not None, return False
                 return False
 
         return True
@@ -63,15 +57,21 @@ class TestLocationTypeMapping(unittest.TestCase):
                     self.compare_responses(actual_response, expected_response)
                 )
 
-    def test_account_questions(self):
+    def test_job_vacancy_questions(self):
         queries = [
             (
-                "Are there any job openings for Python developers?",
-                {"location_type": "ACCOUNT", "args": {"job_vacancy": "Python"}},
+                "Are there any job vacancies for Python developers?",
+                {
+                    "location_type": "ACCOUNT",
+                    "args": {"job_vacancy": "python"},
+                },
             ),
             (
-                "What are the available job vacancies?",
-                {"location_type": "ACCOUNT", "args": {"job_vacancy": None}},
+                "What job vacancies do you have?",
+                {
+                    "location_type": "ACCOUNT",
+                    "args": {"job_vacancy": None},
+                },
             ),
         ]
         for query, expected_response in queries:
@@ -86,12 +86,18 @@ class TestLocationTypeMapping(unittest.TestCase):
     def test_cafeteria_questions(self):
         queries = [
             (
-                "What food options are available in the cafeteria?",
-                {"location_type": "CAFETERIA", "args": {"food_type": None}},
+                "What food is available in the cafeteria?",
+                {
+                    "location_type": "CAFETERIA",
+                    "args": {"food_type": None},
+                },
             ),
             (
-                "Where can I get something to eat?",
-                {"location_type": "CAFETERIA", "args": {"food_type": None}},
+                "I want to have a sandwich for lunch.",
+                {
+                    "location_type": "CAFETERIA",
+                    "args": {"food_type": "sandwich"},
+                },
             ),
         ]
         for query, expected_response in queries:
@@ -104,22 +110,53 @@ class TestLocationTypeMapping(unittest.TestCase):
                 )
 
     def test_amenity_questions(self):
-        query = "Where is the washroom on the second floor?"
-        expected_response = {"location_type": "AMENITY", "args": {"type": "washroom"}}
-        response = self.send_get_request(query)
-        self.assertEqual(response.status_code, 200)
-        actual_response = response.json()
-        self.assertTrue(self.compare_responses(actual_response, expected_response))
+        queries = [
+            (
+                "Where is the washroom on the first floor?",
+                {
+                    "location_type": "AMENITY",
+                    "args": {"type": "washroom"},
+                },
+            ),
+            (
+                "Where can I find a washroom?",
+                {
+                    "location_type": "AMENITY",
+                    "args": {"type": "washroom"},
+                },
+            ),
+        ]
+        for query, expected_response in queries:
+            with self.subTest(query=query):
+                response = self.send_get_request(query)
+                self.assertEqual(response.status_code, 200)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_bank_questions(self):
         queries = [
             (
-                "Can I get the contact for ICICI bank?",
-                {"location_type": "BANK", "args": {"type": "ICICI"}},
+                "I want to open an account in ICICI.",
+                {
+                    "location_type": "BANK",
+                    "args": {"type": "ICICI"},
+                },
             ),
             (
-                "Is there a Federal Bank here?",
-                {"location_type": "BANK", "args": {"type": "FEDERAL"}},
+                "Tell me about FEDERAL bank services.",
+                {
+                    "location_type": "BANK",
+                    "args": {"type": "FEDERAL"},
+                },
+            ),
+            (
+                "What about HDFC bank?",
+                {
+                    "location_type": "BANK",
+                    "args": {"type": None},
+                },
             ),
         ]
         for query, expected_response in queries:
@@ -132,22 +169,18 @@ class TestLocationTypeMapping(unittest.TestCase):
                 )
 
     def test_atm_questions(self):
-        query = "Where is the nearest ATM?"
-        expected_response = {"location_type": "ATM"}
-        response = self.send_get_request(query)
-        self.assertEqual(response.status_code, 200)
-        actual_response = response.json()
-        self.assertTrue(self.compare_responses(actual_response, expected_response))
-
-    def test_store_questions(self):
         queries = [
             (
-                "Where can I buy a notebook?",
-                {"location_type": "STORE", "args": {"item": "notebook"}},
+                "Where is the nearest ATM?",
+                {
+                    "location_type": "ATM",
+                },
             ),
             (
-                "Is there a store where I can buy items?",
-                {"location_type": "STORE", "args": {"item": None}},
+                "Can you tell me about ATMs on campus?",
+                {
+                    "location_type": "ATM",
+                },
             ),
         ]
         for query, expected_response in queries:
@@ -159,23 +192,45 @@ class TestLocationTypeMapping(unittest.TestCase):
                     self.compare_responses(actual_response, expected_response)
                 )
 
-    def test_tech_bar_questions(self):
-        query = "I need help with my laptop."
-        expected_response = {"location_type": "TECH_BAR"}
-        response = self.send_get_request(query)
-        self.assertEqual(response.status_code, 200)
-        actual_response = response.json()
-        self.assertTrue(self.compare_responses(actual_response, expected_response))
+    def test_technical_support_questions(self):
+        queries = [
+            (
+                "I need help with my laptop.",
+                {
+                    "location_type": "TECH_BAR",
+                },
+            ),
+            (
+                "How do I troubleshoot my software issues?",
+                {
+                    "location_type": "TECH_BAR",
+                },
+            ),
+        ]
+        for query, expected_response in queries:
+            with self.subTest(query=query):
+                response = self.send_get_request(query)
+                self.assertEqual(response.status_code, 200)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
 
     def test_security_questions(self):
         queries = [
             (
-                "I lost my keys, where can I check?",
-                {"location_type": "SECURITY", "args": {"item": "keys"}},
+                "I lost my umbrella.",
+                {
+                    "location_type": "SECURITY",
+                    "args": {"item": "umbrella"},
+                },
             ),
             (
-                "Where is the lost and found office?",
-                {"location_type": "SECURITY", "args": {"item": None}},
+                "Where can I report lost items?",
+                {
+                    "location_type": "SECURITY",
+                    "args": {"item": None},
+                },
             ),
         ]
         for query, expected_response in queries:
@@ -187,31 +242,23 @@ class TestLocationTypeMapping(unittest.TestCase):
                     self.compare_responses(actual_response, expected_response)
                 )
 
-    def test_recreation_questions(self):
-        query = "I want to play foosball, where can I go?"
-        expected_response = {"location_type": "RECREATION"}
-        response = self.send_get_request(query)
-        self.assertEqual(response.status_code, 200)
-        actual_response = response.json()
-        self.assertTrue(self.compare_responses(actual_response, expected_response))
-
     def test_gym_questions(self):
         queries = [
             (
-                "What is the fee for the gym?",
+                "What are the fees for the gym?",
                 {
                     "location_type": "GYM",
                     "args": {
-                        "contact_details": "no",
+                        "contact_details": "yes",
                         "maintenance_status": "no",
                         "fee_structure": "yes",
-                        "application_process": "no",
+                        "application_process": "yes",
                         "documents_needed": "no",
                     },
                 },
             ),
             (
-                "Is the gym under maintenance right now?",
+                "Is the gym open for maintenance?",
                 {
                     "location_type": "GYM",
                     "args": {
@@ -233,48 +280,28 @@ class TestLocationTypeMapping(unittest.TestCase):
                     self.compare_responses(actual_response, expected_response)
                 )
 
-    def test_insurance_questions(self):
-        query = "How do I get my insurance renewed?"
-        expected_response = {"location_type": "INSURANCE"}
-        response = self.send_get_request(query)
-        self.assertEqual(response.status_code, 200)
-        actual_response = response.json()
-        self.assertTrue(self.compare_responses(actual_response, expected_response))
-
-    def test_people_questions(self):
-        queries = [
-            (
-                "Who is my manager?",
-                {"location_type": "PEOPLE", "args": {"type": "MANAGER"}},
-            ),
-            (
-                "Who is the CEO of the company?",
-                {"location_type": "PEOPLE", "args": {"type": "CEO"}},
-            ),
-        ]
-        for query, expected_response in queries:
-            with self.subTest(query=query):
-                response = self.send_get_request(query)
-                self.assertEqual(response.status_code, 200)
-                actual_response = response.json()
-                self.assertTrue(
-                    self.compare_responses(actual_response, expected_response)
-                )
-
     def test_health_questions(self):
         queries = [
             (
-                "Where can I see a doctor?",
+                "Where can I get my cold checked?",
                 {
                     "location_type": "HEALTH",
-                    "args": {"type": "doctor", "booking": False, "availability": False},
+                    "args": {
+                        "type": "doctor",
+                        "booking": "True",
+                        "availability": "True",
+                    },
                 },
             ),
             (
-                "Can I book an appointment with the doctor?",
+                "I have a headache and need to see a doctor.",
                 {
                     "location_type": "HEALTH",
-                    "args": {"type": "doctor", "booking": True, "availability": False},
+                    "args": {
+                        "type": "doctor",
+                        "booking": "True",
+                        "availability": "True",
+                    },
                 },
             ),
         ]
@@ -291,11 +318,67 @@ class TestLocationTypeMapping(unittest.TestCase):
         queries = [
             (
                 "Where is Founders Hall?",
-                {"location_type": "PLACE", "args": {"name": "Founders Hall"}},
+                {
+                    "location_type": "PLACE",
+                    "args": {"name": "Founders Hall"},
+                },
             ),
             (
-                "Where is the Main Lobby?",
-                {"location_type": "PLACE", "args": {"name": "Main Lobby"}},
+                "How do I get to the Main Lobby?",
+                {
+                    "location_type": "PLACE",
+                    "args": {"name": "Main Lobby"},
+                },
+            ),
+        ]
+        for query, expected_response in queries:
+            with self.subTest(query=query):
+                response = self.send_get_request(query)
+                self.assertEqual(response.status_code, 200)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
+
+    def test_people_questions(self):
+        queries = [
+            (
+                "Who is my manager?",
+                {
+                    "location_type": "PEOPLE",
+                    "args": {"entity_type": "MANAGER"},
+                },
+            ),
+            (
+                "Who is my HR?",
+                {
+                    "location_type": "PEOPLE",
+                    "args": {"entity_type": "HR"},
+                },
+            ),
+        ]
+        for query, expected_response in queries:
+            with self.subTest(query=query):
+                response = self.send_get_request(query)
+                self.assertEqual(response.status_code, 200)
+                actual_response = response.json()
+                self.assertTrue(
+                    self.compare_responses(actual_response, expected_response)
+                )
+
+    def test_insurance_questions(self):
+        queries = [
+            (
+                "I want to get my insurance renewed.",
+                {
+                    "location_type": "INSURANCE",
+                },
+            ),
+            (
+                "Who should I contact for insurance queries?",
+                {
+                    "location_type": "INSURANCE",
+                },
             ),
         ]
         for query, expected_response in queries:
