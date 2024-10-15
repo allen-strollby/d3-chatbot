@@ -111,7 +111,7 @@ def populate_people(ust_ind, ust_us, ust_au):
 
     manager_data = {
         "company": ust_ind.pk,
-        "office": account_1.pk,
+        "office": board_room.pk,
         "manager": hr_manager.pk,
         "name": "Tom Holland",
         "entity_type": EntityTypeEnum.MANAGER,

@@ -20,3 +20,4 @@ class DivisionTypeEnum(enum.Enum):
     MAIN_LOBBY = "MAIN_LOBBY"
     PLACE = "PLACE"
     PEOPLE = "PEOPLE"
+    FLOOR = "FLOOR"

@@ -257,5 +257,15 @@ the query type.
     2. Where is the lobby?
     3. If any mental issues or any personal issues or salary related issues?(assign args as "name":"HR")
 
-
+16. Give me floor plan of this floor
+    - Response
+    {
+        "location_type":"FLOOR",
+        "args":{
+            "floor":1
+        }
+    }
+    - Example
+    1. Give floor map of first floor
+    2. Floor map of thrid floor
 """

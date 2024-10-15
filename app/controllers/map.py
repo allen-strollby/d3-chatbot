@@ -14,6 +14,7 @@ from .location import get_location_details
 from .gym import get_gym_details
 from .security import get_security
 from .recreation import get_recreation
+from .floor import get_floor
 
 controller_map = {
     DivisionTypeEnum.CONFERENCE: get_available_conference_room,
@@ -31,4 +32,5 @@ controller_map = {
     DivisionTypeEnum.SECURITY: get_security,
     DivisionTypeEnum.RECREATION: get_recreation,
     DivisionTypeEnum.PEOPLE: return_employee_tree,
+    DivisionTypeEnum.FLOOR: get_floor
 }
