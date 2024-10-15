@@ -25,6 +25,7 @@ def get_amenities(**kwargs) -> dict | None:
         if queryset is None:
             queryset = original_queryset
 
+
     if queryset:
         model = queryset[0]
         return {"type": "AMENITY", "room_id": model.room_id}
