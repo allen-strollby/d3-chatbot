@@ -108,7 +108,7 @@ the query type.
         }
     }
     - Note
-    ICICI and FEDERAL are the only banks here.
+    ICICI and HDFC are the only banks here.
     If user inputs any other bank or no bank, make the type argument null
 
 6. Enquiries about location of ATMs

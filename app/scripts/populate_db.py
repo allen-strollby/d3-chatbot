@@ -50,6 +50,9 @@ def random_string():
 
 def populate_people(ust_ind, ust_us, ust_au):
     board_room = DivisionModel.objects(room_id="03_ac_03").get()
+    hdfc_bank = DivisionModel.objects(name="HDFC").get()
+    icici_bank = DivisionModel.objects(name="ICICI").get()
+
     ceo_data = {
         "company": ust_us.pk,
         "office": board_room.pk,
@@ -116,6 +119,7 @@ def populate_people(ust_ind, ust_us, ust_au):
         "hr": hr_2.pk,
         "employee_id": "am",
         "ceo": ceo.pk,
+        "bank": hdfc_bank.pk
     }
     manager = EntityModel.objects.create(**manager_data)
 
@@ -130,6 +134,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "hr": hr_1.pk,
             "employee_id": "aa",
             "ceo": ceo.pk,
+            "bank": hdfc_bank.pk
         },
         {
             "company": ust_ind.pk,
@@ -141,6 +146,7 @@ def populate_people(ust_ind, ust_us, ust_au):
             "hr": hr_2.pk,
             "employee_id": "ua",
             "ceo": ceo.pk,
+            "bank": icici_bank.pk
         },
         {
             "company": ust_ind.pk,
